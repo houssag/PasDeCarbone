@@ -13,14 +13,12 @@ public class Voiture extends Equipement{
 	};
 	private typeCarburant Carburant;
 	private float LitresParKm;//les litres (ou Nm3 dans le cas du CNG) émis en un km parcouru
-	private int nbPassagers;//nombre de passagers présent dans la voiture
 	
 	Voiture(String n, typeCarburant c, float lpk, int np){		
 		super(n);
 		//modele=m;
 		Carburant=c;
 		LitresParKm=lpk;
-		nbPassagers=np;
 	}
 	
 	public float calculerTaux() {
@@ -39,7 +37,7 @@ public class Voiture extends Equipement{
 		else if(Carburant==typeCarburant.CNG) {
 			coef=CNG;
 		}
-		total=(coef*LitresParKm)/nbPassagers;
+		total=(coef*LitresParKm);
 		return total;
 	}
 	
