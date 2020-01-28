@@ -3,20 +3,20 @@ import java.util.Iterator;
 
 public class ListeUtilisateur {
 	
-	/** Liste des fonctions utilisées par la classe ListeUtilisateur**/
+	/** Liste des fonctions utilisÃ©es par la classe ListeUtilisateur**/
 	
 	//Liste de tous les Utilisateurs
-	private static ArrayList<Utilisateur> listeUtilisateurs = new ArrayList<Utilisateur>();;
+	private static ArrayList<Utilisateur> listeUtilisateurs = new ArrayList<Utilisateur>();
 	
-	//Fonction permettant d'ajouter un utilisateur à la liste
+	//Fonction permettant d'ajouter un utilisateur Ã  la liste
 	public void ajouterUtilisateur(Utilisateur u) {
 		
-		//Vérifie qu'un utilisateur est bien passé en paramètre
+		//VÃ©rifie qu'un utilisateur est bien passÃ© en paramÃ¨tre
 		if(u == null) { 
 			return;
 		}
 		
-		//Ajoute l'utilisateur s'il n'est pas déjà présent dans la liste		
+		//Ajoute l'utilisateur s'il n'est pas dÃ©jÃ  prÃ©sent dans la liste		
 		if(!utilisateurExiste(u)) { 
 			listeUtilisateurs.add(u);
 		}
@@ -25,7 +25,7 @@ public class ListeUtilisateur {
 	//Fonction pour supprimer un utilisateur de la liste
 	public void supprimerUtilisateur(Utilisateur u) {
 		
-		//Supprime l'utilisateur si présent dans la liste
+		//Supprime l'utilisateur si prÃ©sent dans la liste
 		if(rechercherUtilisateur(u.getPseudo()) != null) { 
 			listeUtilisateurs.remove(u);
 		}
@@ -41,7 +41,7 @@ public class ListeUtilisateur {
 		while (iterator.hasNext()) { 
 			courant = iterator.next();
 			
-			//Compare chaques pseudo avec celui passé en paramètre
+			//Compare chaques pseudo avec celui passÃ© en paramÃ¨tre
 			if(courant.getPseudo().equals(pseudo)) {
 				u = courant;
 			}
@@ -49,7 +49,7 @@ public class ListeUtilisateur {
 		return u;
 	}
 	
-	//Fonction qui indique si un utilisateur est déjà présent dans la liste
+	//Fonction qui indique si un utilisateur est dÃ©jÃ  prÃ©sent dans la liste
 	public boolean utilisateurExiste(Utilisateur u) {
 		boolean rep = false;
 		
@@ -60,7 +60,7 @@ public class ListeUtilisateur {
 		while (iterator.hasNext()) { 
 			courant = iterator.next();
 			
-			//Compare chaques pseudo et mail avec ceux de l'utilisateur passé en paramètre
+			//Compare chaques pseudo et mail avec ceux de l'utilisateur passÃ© en paramÃ¨tre
 			if(courant.getPseudo().equals(u.getPseudo()) || courant.getMail().equals(u.getMail())) {
 				rep = true;
 			}
@@ -75,9 +75,9 @@ public class ListeUtilisateur {
 		
 		Iterator<Utilisateur> iterator = listeUtilisateurs.iterator();
 		
-		//Parcour la liste des utilisateur et les concatènes en String 
+		//Parcour la liste des utilisateur et les concatÃ¨nes en String 
 		while (iterator.hasNext()) { 
-			list += iterator.next();
+			list += "["+iterator.next().getPseudo()+"]";
         } 
 		
 		return list;
