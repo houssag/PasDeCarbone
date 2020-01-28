@@ -1,11 +1,10 @@
-import java.lang.reflect.Array;
 import java.util.Date;
 
 public class Consommation {
 	private Utilisateur unUtilisateur;
 	private Equipement unEquipement;
 	private Date mois;
-	private float consommation;
+	private float empreinte;
 	
 	
 	/** constructeur de la classe consommation **/
@@ -16,7 +15,12 @@ public class Consommation {
 		ListeConsommation.AjouterConsommation(this);
 	}
 	
-	boolean equals(Consommation uneConsommation) {
+	float calculerConsommationVehicule(int distance){
+		float taux = this.unEquipement.calculerTaux();
+		return empreinte;
+	}
+	
+	/*boolean equals(Consommation uneConsommation) {
 		if(uneConsommation == null) return false;
 		if(uneConsommation.mois == this.mois) {
 			if(uneConsommation.unEquipement.equals(this.unEquipement) && uneConsommation.unUtilisateur.equals(this.unUtilisateur)) {
@@ -24,13 +28,8 @@ public class Consommation {
 			}
 		}
 		return false;
-	}
+	}*/
 	
-	float calculerConsommation(Object... args){
-		this.consommation = this.unEquipement.calculerConsommation(args);
-		return consommation;
-	}
-
 	public Utilisateur getUtilisateur() {
 		return unUtilisateur;
 	}
@@ -56,10 +55,7 @@ public class Consommation {
 	}
 
 	public float getConsommation() {
-		return consommation;
+		return empreinte;
 	}
 
-	
-	
-	
 }
