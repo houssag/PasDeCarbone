@@ -2,103 +2,83 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Consommation {
-  private Utilisateur unUtilisateur;
-  private ArrayList<Equipement> listeEquipement;
-  private ArrayList<Integer> listeDistance;
-  private Date mois;
-  private float empreinte;
+  // Liste de toute les consommations enregistrÈs
+  private ArrayList<ConsommationMensuelle> listeConsommation;
 
-
-  /** Constructor consommation.
-   * 
-   * @param unUtilisateur correspond √† l'utilisateur pour lequel la consommation existe
-   * @param unEquipement correspond √† au premier √©quipement que l'utilisateur a utilis√©
-   * @param distance correspond √† la distance effectu√© avec un √©quipement
-   * @param mois correspond au mois de la consommation
-   * 
-   */
-  Consommation(Utilisateur unUtilisateur, Equipement unEquipement, int distance, Date mois) {
-    this.unUtilisateur = unUtilisateur;
-    this.listeEquipement = new ArrayList<Equipement>();
-    this.listeDistance = new ArrayList<Integer>();
-    this.listeEquipement.add(unEquipement);
-    this.listeDistance.add(distance);
-    this.mois = mois;
-    ListeConsommation.ajouterConsommation(this);
+  public Consommation() {
+    listeConsommation = new ArrayList<ConsommationMensuelle>();
   }
 
-  /** Description calculerConsommation.
+
+  /**
+   * Permet d'ajouter un mois de consommation ‡ la liste de tous les mois de consommations.
    * 
-   * @return renvoie sous forme d'entier la valeur de la consommation d'un mois pour un utilisateur
+   * @param uneConsommation la consommation ‡ ajouter ‡ la liste
    */
-  float calculerConsommation() {
-    float taux = 0;
-    for (int i = 0; i < this.listeEquipement.size(); i++) {
-      taux = taux + this.listeEquipement.get(i).calculerTaux() * this.listeDistance.get(i);
+  public void ajouterConsommation(ConsommationMensuelle uneConsommation) {
+
+    // Verifie que la consommation n'est pas null
+    if (uneConsommation == null) {
+      return;
     }
-    return taux;
+    // Verifie que la consommation n'est pas dÈj‡ prÈsente dans la liste
+    if (!consommationExiste(uneConsommation)) {
+      return;
+    }
+
+    listeConsommation.add(uneConsommation);
   }
 
-
-  /*
-   * boolean equals(Consommation uneConsommation) { if(uneConsommation == null) return false;
-   * if(uneConsommation.mois == this.mois) {
-   * if(uneConsommation.unEquipement.equals(this.unEquipement) &&
-   * uneConsommation.unUtilisateur.equals(this.unUtilisateur)) { return true; } } return false; }
-   */
-
-  public Utilisateur getUtilisateur() {
-    return unUtilisateur;
-  }
-
-  public void setUnUtilisateur(Utilisateur unUtilisateur) {
-    this.unUtilisateur = unUtilisateur;
-  }
-
-  /** Description ajotuerUnEquipementEtUneDistance.
+  /**
+   * Permet de de verifier si un mois de consommation existe dÈj‡.
    * 
-   * @param unEquipement correspond √† l'√©quipement √† ajouter √† la liste d'√©quipement
-   * @param distance la distance √† ajotuer √† la liste des distances
+   * @param uneConsommation la consommation ‡ verifier
+   * @return renvoie si la consommation existe ou non
    */
-  public void ajouterUnEquipementEtUneDistance(Equipement unEquipement, int distance) {
-    this.listeEquipement.add(unEquipement);
-    this.listeDistance.add(distance);
-  }
-  
-  /** Description enleverUnEquipementEtUneDistance.
-   * 
-   * @param unEquipement correspond √† l'√©quipement √† supprimer
-   */
-  public void enleverUnEquipementEtUneDistance(Equipement unEquipement) {
-    int i = this.listeEquipement.indexOf(unEquipement);
-    this.listeEquipement.remove(unEquipement);
-    this.listeDistance.remove(i);
-  }
-
-  /** Description getDistance.
-   * 
-   * @param unEquipement correspond √† l'√©quipement pour lequel r√©cuperer la distance.
-   * @return Renvoie la distance parcouru avec l'√©quipement.
-   */
-  public Integer getDistance(Equipement unEquipement) {
-    for (int i = 0; i < this.listeEquipement.size(); i++) {
-      if (this.listeEquipement.get(i).equals(unEquipement)) {
-        return this.listeDistance.get(i);
+  public boolean consommationExiste(ConsommationMensuelle uneConsommation) {
+    for (ConsommationMensuelle uneConsommationDeLaListe : listeConsommation) {
+      if (uneConsommationDeLaListe.equals(uneConsommation)) {
+        return true;
       }
     }
-    return 0;
+    return false;
   }
 
-  public Date getMois() {
-    return mois;
+
+  /**
+   * Description supprimerUneConsommation.
+   * 
+   * @param uneConsommation la consommation ‡ supprimer de la liste
+   */
+  public boolean supprimerUneConsommation(ConsommationMensuelle uneConsommation) {
+    return listeConsommation.remove(uneConsommation);
   }
 
-  public void setMois(Date mois) {
-    this.mois = mois;
+  /**
+   * Description recupererTouteConsommation.
+   * 
+   * @return Renvoie sous forme de liste toute les consommations de la liste
+   */
+  public ArrayList<ConsommationMensuelle> recupererTouteConsommation() {
+    return listeConsommation;
   }
 
-  public float getConsommation() {
-    return empreinte;
+  /**
+   * Description recupererConsommationDate.
+   * 
+   * @param mois Prend en parametre le mois choisis.
+   * @return Renvoie la liste de toute les consommations du mois en parametre.
+   */
+  public ArrayList<ConsommationMensuelle> recupererConsommationDate(Date mois) {
+    ArrayList<ConsommationMensuelle> result = new ArrayList<ConsommationMensuelle>();
+    for (ConsommationMensuelle uneConsommationDeLaListe : listeConsommation) {
+      if (uneConsommationDeLaListe.getMois().equals(mois)) {
+        result.add(uneConsommationDeLaListe);
+      }
+    }
+    return result;
   }
+
+
 
 }
