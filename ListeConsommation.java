@@ -104,5 +104,4 @@ public class ListeConsommation {
     }
     return null;
   }
-
 }
