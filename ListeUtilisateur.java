@@ -8,11 +8,19 @@ public class ListeUtilisateur {
   // Liste de tous les Utilisateurs
   private static ArrayList<Utilisateur> listeUtilisateurs;
 
+  /**
+   * Constructeur de la classe ListeUtilisateur.
+   * listeUtilisateurs regroupe une liste d'utilisateur, elle est initialisé dans le constructeur
+   */
   public ListeUtilisateur() {
     listeUtilisateurs = new ArrayList<Utilisateur>();
   }
 
-  /**Fonction permettant d'ajouter un utilisateur à la liste. **/
+  /**
+   * Fonction permettant d'ajouter un utilisateur à la liste.
+   * L'utilisateur peut être un admin, un analyste ou un particulier
+   * @param u est un utilisateur
+   */
   public void ajouterUtilisateur(Utilisateur u) { 
 
     // Vérifie qu'un utilisateur est bien passé en paramètre
@@ -26,7 +34,11 @@ public class ListeUtilisateur {
     }
   }
 
-  /** Fonction pour supprimer un utilisateur de la liste. **/
+  /**
+   * Fonction pour supprimer un utilisateur de la liste.
+   * L'utilisateur peut être un admin, un analyste ou un particulier
+   * @param u est un utilisateur
+   */
   public void supprimerUtilisateur(Utilisateur u) {
 
     // Supprime l'utilisateur si présent dans la liste
@@ -35,7 +47,12 @@ public class ListeUtilisateur {
     }
   }
 
-  /** Fonction pour rechercher un utilisateur avec son pseudo. **/
+  /**
+   * Fonction pour rechercher un utilisateur avec son pseudo.
+   * L'utilisateur peut être un admin, un analyste ou un particulier
+   * @param pseudo Il est unique à chaques utilisateurs
+   * @return un utilisateur ou null si rien trouvé
+   */
   public Utilisateur rechercherUtilisateur(String pseudo) {
     Utilisateur u = null;
     Iterator<Utilisateur> iterator = listeUtilisateurs.iterator();
@@ -53,7 +70,12 @@ public class ListeUtilisateur {
     return u;
   }
 
-  /** Fonction qui indique si un utilisateur est déjà présent dans la liste. **/
+  /**
+   * Fonction qui indique si un utilisateur est déjà présent dans la liste.
+   * L'utilisateur peut être un admin, un analyste ou un particulier
+   * @param u est un utilisateur
+   * @return un boolean vrai si l'utilisateur existe dans la listeUtilisateurs, faux sinon
+   */
   public boolean utilisateurExiste(Utilisateur u) {
     boolean rep = false;
 
@@ -73,7 +95,10 @@ public class ListeUtilisateur {
     return rep;
   }
 
-  /** Fonction pour afficher la liste des utilisateur sous forme de String. **/
+  /**
+   * Fonction pour afficher la liste des utilisateur.
+   * @return sous forme de String la liste de tous les utilisateurs présents dans listeUtilisateurs
+   */
   public String toStringListA() {
     String list = "";
 
