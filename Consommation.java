@@ -1,61 +1,64 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Consommation {
-	private Utilisateur unUtilisateur;
-	private Equipement unEquipement;
-	private Date mois;
-	private float empreinte;
-	
-	
-	/** constructeur de la classe consommation **/
-	Consommation(Utilisateur unUtilisateur, Equipement unEquipement, Date mois){
-		this.unUtilisateur = unUtilisateur;
-		this.unEquipement = unEquipement;
-		this.mois = mois;
-		ListeConsommation.AjouterConsommation(this);
-	}
-	
-	float calculerConsommationVehicule(int distance){
-		float taux = this.unEquipement.calculerTaux();
-		return empreinte;
-	}
-	
-	/*boolean equals(Consommation uneConsommation) {
-		if(uneConsommation == null) return false;
-		if(uneConsommation.mois == this.mois) {
-			if(uneConsommation.unEquipement.equals(this.unEquipement) && uneConsommation.unUtilisateur.equals(this.unUtilisateur)) {
-				return true;
-			}
-		}
-		return false;
-	}*/
-	
-	public Utilisateur getUtilisateur() {
-		return unUtilisateur;
-	}
+  private Utilisateur unUtilisateur;
+  private ArrayList<Equipement> listeEquipement;
+  private Date mois;
+  private float empreinte;
 
-	public void setUnUtilisateur(Utilisateur unUtilisateur) {
-		this.unUtilisateur = unUtilisateur;
-	}
 
-	public Equipement getEquipement() {
-		return unEquipement;
-	}
+  /** Constructor de la classe consommation **/
+  Consommation(Utilisateur unUtilisateur, Equipement unEquipement, Date mois) {
+    this.unUtilisateur = unUtilisateur;
+    this.listeEquipement = new ArrayList<Equipement>();
+    this.listeEquipement.add(unEquipement);
+    this.mois = mois;
+    ListeConsommation.AjouterConsommation(this);
+  }
 
-	public void setUnEquipement(Equipement unEquipement) {
-		this.unEquipement = unEquipement;
-	}
+  float calculerConsommationVehicule(int distance) {
+    float taux = 0;
+    for (Equipement unAutreEquipement : this.listeEquipement) {
+      taux = unAutreEquipement.calculerTaux();
+    }
 
-	public Date getMois() {
-		return mois;
-	}
+    return empreinte;
+  }
 
-	public void setMois(Date mois) {
-		this.mois= mois;
-	}
+  /*
+   * boolean equals(Consommation uneConsommation) { if(uneConsommation == null) return false;
+   * if(uneConsommation.mois == this.mois) {
+   * if(uneConsommation.unEquipement.equals(this.unEquipement) &&
+   * uneConsommation.unUtilisateur.equals(this.unUtilisateur)) { return true; } } return false; }
+   */
 
-	public float getConsommation() {
-		return empreinte;
-	}
+  public Utilisateur getUtilisateur() {
+    return unUtilisateur;
+  }
+
+  public void setUnUtilisateur(Utilisateur unUtilisateur) {
+    this.unUtilisateur = unUtilisateur;
+  }
+
+  public ArrayList<Equipement> getEquipement() {
+    return listeEquipement;
+  }
+
+  public void addUnEquipement(Equipement unEquipement) {
+    this.listeEquipement.add(unEquipement);
+  }
+
+  public Date getMois() {
+    return mois;
+  }
+
+  public void setMois(Date mois) {
+    this.mois = mois;
+  }
+
+  public float getConsommation() {
+    return empreinte;
+  }
 
 }
