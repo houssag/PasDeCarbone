@@ -1,31 +1,23 @@
 
 abstract class Equipement {
-	private String nom;
-	//private float taux;
-	
-	/*Equipement(String n){
-		nom=n;
-		taux=t;
-	}*/
-	Equipement(String n){
-		nom=n;
-	}
-	
-	abstract float calculerTaux();
+  private String nom;
+  
+  Equipement(String n) {
+    nom = n;
+  }
 
-	public String getNom() {
-		return nom;
-	}
+  /**
+   * Renvoie le taux calculé en fonction du carburant et de la consommation en litres pas km.
+   * @return Le taux d'émission CO2 de la voiture
+   */
+  abstract float calculerTaux();
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+  public String getNom() {
+    return nom;
+  }
 
-	/*public float getTaux() {
-		return taux;
-	}
+  public void setNom(String nom) {
+    this.nom = nom;
+  }
 
-	public void setTaux(float taux) {
-		this.taux = taux;
-	}*/
 }
