@@ -23,7 +23,7 @@ public class Consommation {
       taux = unAutreEquipement.calculerTaux();
     }
 
-    return empreinte;
+    return taux;
   }
 
   /*
