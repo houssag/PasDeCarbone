@@ -2,88 +2,107 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ListeConsommation {
-	//Liste de toute les consommations enregistrés
-	private static ArrayList<Consommation> listeConsommation = new ArrayList<Consommation>();
-	
-	
-	//Fonction permettant d'ajouter une consommation à la liste
-	static void AjouterConsommation(Consommation uneConsommation) {
+  // Liste de toute les consommations enregistrÃ©s
+  private static ArrayList<Consommation> listeConsommation = new ArrayList<Consommation>();
 
-		//Verifie que la consommation n'est pas null
-		if(uneConsommation== null) return;
-		//Verifie que la consommation n'est pas déjà présente dans la liste
-		for(Consommation uneConsommationDeLaListe : listeConsommation ){
-			if(uneConsommationDeLaListe.equals(uneConsommation)) return;
-		}
-		listeConsommation.add(uneConsommation);
-	}
-	
-	//Supprime une consommation de la liste et renvoie si elle a bien été supprimé ou non
-	static boolean supprimerUneConsommation(Consommation uneConsommation) {
-		return listeConsommation.remove(uneConsommation);
-	}
-	
-	//Récupère la liste de toute les consommations enregistrés
-	static ArrayList<Consommation> recupererTouteConsommation(){
-		return listeConsommation;
-	}
-	
-	//Récupère sous forme de liste toutes les consommations d'un utilisateur
-	static ArrayList<Consommation> recupererConsommationUtilisateur(Utilisateur unUtilisateur) {
-		ArrayList<Consommation> result= new ArrayList<Consommation>();
-		for(Consommation uneConsommationDeLaListe : listeConsommation ){
-			if(uneConsommationDeLaListe.getUtilisateur().equals(unUtilisateur)) result.add(uneConsommationDeLaListe);
-		}
-		return result;		
-	}
-	
-	//Récupère sous forme de liste toutes les consommations d'un équipement
-	static ArrayList<Consommation> recupererConsommationEquipement(Equipement unEquipement) {
-		ArrayList<Consommation> result= new ArrayList<Consommation>();
-		for(Consommation uneConsommationDeLaListe : listeConsommation ){
-			if(uneConsommationDeLaListe.getEquipement().equals(unEquipement)) result.add(uneConsommationDeLaListe);
-		}
-		return result;		
-	}
-	
-	//Récupère sous forme de liste toutes les consommations du mois spécifié
-	static ArrayList<Consommation> recupererConsommationDate(Date mois) {
-		ArrayList<Consommation> result= new ArrayList<Consommation>();
-		for(Consommation uneConsommationDeLaListe : listeConsommation ){
-			if(uneConsommationDeLaListe.getMois().equals(mois)) result.add(uneConsommationDeLaListe);
-		}
-		return result;		
-	}
-	
-	//Récupère sous forme de liste toutes les consommations entre la date de début et la date de fin et par un utilisateur précis
-	static ArrayList<Consommation> recupererConsommationDateUtilisateur(Date mois, Utilisateur unUtilisateur) {
-		ArrayList<Consommation> result= new ArrayList<Consommation>();
-		for(Consommation uneConsommationDeLaListe : listeConsommation ){
-			if(uneConsommationDeLaListe.getMois().equals(mois)) result.add(uneConsommationDeLaListe);
-		}
-		return result;		
-	}
-	
-	//Récupère sous forme de liste toutes les consommations entre la date de début et de fin et d'un équipement précis
-	static ArrayList<Consommation> recupererConsommationDateEquipement(Date mois, Equipement unEquipement) {
-		ArrayList<Consommation> result= new ArrayList<Consommation>();
-		for(Consommation uneConsommationDeLaListe : listeConsommation ){
-			if(uneConsommationDeLaListe.getMois().equals(mois) && uneConsommationDeLaListe.getEquipement().equals(unEquipement)) result.add(uneConsommationDeLaListe);
-		}
-		return result;		
-	}
-	
-	
-	//Calcul l'empreinte carbone d'un mois et d'un utilisateur précis
-	static float calculEmpreinteUtilisateur(Date mois, Utilisateur unUtilisateur) {
-		ArrayList<Consommation> liste = recupererConsommationDateUtilisateur(mois, unUtilisateur);
-		float result = 0;
-		for(Consommation uneConsommation : liste) {
-			result=+ uneConsommation.getConsommation();
-		}
-		return result;
-	}
-	
-	
+
+  /** Description ajouterConsommation.
+   *  
+   * @param uneConsommation la consommation Ã  ajouter Ã  la liste
+   */
+  public static void ajouterConsommation(Consommation uneConsommation) {
+
+    // Verifie que la consommation n'est pas null
+    if (uneConsommation == null) {
+      return;
+    }
+    // Verifie que la consommation n'est pas dÃ©jÃ  prÃ©sente dans la liste
+    if (!consommationExiste(uneConsommation)) {
+      return;
+    }
+
+    listeConsommation.add(uneConsommation);
+  }
+
+  /** Description consommationExiste.
+   * 
+   * @param uneConsommation la consommation Ã  verifier
+   * @return renvoie si la consommation existe ou non
+   */
+  public static boolean consommationExiste(Consommation uneConsommation) {
+    for (Consommation uneConsommationDeLaListe : listeConsommation) {
+      if (uneConsommationDeLaListe.equals(uneConsommation)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+  /** Description supprimerUneConsommation.
+   * 
+   * @param uneConsommation la consommation Ã  supprimer de la liste
+   */
+  public static boolean supprimerUneConsommation(Consommation uneConsommation) {
+    return listeConsommation.remove(uneConsommation);
+  }
+
+  /** Description recupererTouteConsommation.
+   * 
+   * @return Renvoie sous forme de liste toute les consommations de la liste
+   */
+  public static ArrayList<Consommation> recupererTouteConsommation() {
+    return listeConsommation;
+  }
+
+  /** Description recupererConsommationUtilisateur.
+   * 
+   * @param unUtilisateur L'utilisateur dÃ©sirÃ©
+   * @return Renvoie sous forme de liste tout les consommations de l'utilisateur.
+   */
+  public static ArrayList<Consommation> recupererConsommationUtilisateur(
+      Utilisateur unUtilisateur) {
+    ArrayList<Consommation> result = new ArrayList<Consommation>();
+    for (Consommation uneConsommationDeLaListe : listeConsommation) {
+      if (uneConsommationDeLaListe.getUtilisateur().equals(unUtilisateur)) {
+        result.add(uneConsommationDeLaListe);
+      }
+    }
+    return result;
+  }
+
+
+  /**
+   * Description recupererConsommationDate.
+   * 
+   * @param mois Prend en parametre le mois choisis.
+   * @return Renvoie la liste de toute les consommations du mois en parametre.
+   */
+  public static ArrayList<Consommation> recupererConsommationDate(Date mois) {
+    ArrayList<Consommation> result = new ArrayList<Consommation>();
+    for (Consommation uneConsommationDeLaListe : listeConsommation) {
+      if (uneConsommationDeLaListe.getMois().equals(mois)) {
+        result.add(uneConsommationDeLaListe);
+      }
+    }
+    return result;
+  }
+
+  /** Description recupererConsommationdateUtilisateur.
+   * 
+   * @param mois la date du mois souhaitÃ©
+   * @param unUtilisateur l'utilisateur souhaitÃ©
+   * @return Renvoie sous forme de liste toutes les consommations d'un utilisateur pour une date
+   */
+
+  public static Consommation recupererConsommationDateUtilisateur(Date mois,
+      Utilisateur unUtilisateur) {
+    for (Consommation uneConsommationDeLaListe : listeConsommation) {
+      if (uneConsommationDeLaListe.getMois().equals(mois)) {
+        return uneConsommationDeLaListe;
+      }
+    }
+    return null;
+  }
 
 }
