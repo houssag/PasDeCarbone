@@ -3,7 +3,13 @@ public class Avion extends Equipement {
   static float EMISSIONPARKM = 172;
   private boolean economique;
   private int distance;
-
+  
+  /**
+   * Constructeur de l'objet avion.
+   * @param n le nom de l'avion
+   * @param eco booléen vrai si le voyage a été effectué en classe économique, faux sinon
+   * @param d distance effectué lors du voyage
+   */
   Avion(String n, boolean eco, int d) {
     super(n);
     economique = eco;
@@ -47,14 +53,26 @@ public class Avion extends Equipement {
     return economique;
   }
 
-  public void setEconomique(boolean economique) {
-    this.economique = economique;
+  /**
+   * Modifie la valeur du booléen economique.
+   * @param eco nouvelle valeur du booléen économique
+   */
+  public void setEconomique(boolean eco) {
+    this.economique = eco;
   }
-
+  
+  /**
+   * Renvoie la distance parcourue par l'avion en km.
+   * @return la distance parcourue par l'avion en km
+   */
   public int getDistance() {
     return distance;
   }
 
+  /**
+   * Modifie la distance parcourue par l'avion en km.
+   * @param distance la nouvelle distance parcourue par l'avion en km
+   */
   public void setDistance(int distance) {
     this.distance = distance;
   }
