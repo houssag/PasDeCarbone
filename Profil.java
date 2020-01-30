@@ -11,46 +11,46 @@ public class Profil {
     listeEquipements = new ArrayList<Equipement>();
   }
 
-  /** Fonction permettant d'ajouter un équipement à la liste. **/
+  /** Fonction permettant d'ajouter un Ã©quipement Ã  la liste. **/
   public void ajouterEquipement(Equipement e) {
 
-    // Vérifie qu'un équipement est bien passé en paramètre
+    // VÃ©rifie qu'un Ã©quipement est bien passÃ© en paramÃ¨tre
     if (e == null) {
       return;
     }
 
-    // Ajoute l'équipement s'il n'est pas déjà présent dans la liste
+    // Ajoute l'Ã©quipement s'il n'est pas dÃ©jÃ  prÃ©sent dans la liste
     if (!equipementExiste(e)) {
       listeEquipements.add(e);
     }
   }
 
-  /** Fonction pour supprimer un équipement de la liste. **/
+  /** Fonction pour supprimer un Ã©quipement de la liste. **/
   public boolean supprimerEquipement(Equipement e) {
 
-    // Vérifie qu'un équipement est bien passé en paramètre
+    // VÃ©rifie qu'un Ã©quipement est bien passÃ© en paramÃ¨tre
     if (e == null) {
       return false;
     }
 
-    // Supprime l'équipement si présent dans la liste
+    // Supprime l'Ã©quipement si prÃ©sent dans la liste
     if (rechercherEquipement(e.getNom()) != null) {
       return false;
     }
     return listeEquipements.remove(e);
   }
 
-  /** Fonction pour rechercher un équipement avec son nom. **/
+  /** Fonction pour rechercher un Ã©quipement avec son nom. **/
   public Equipement rechercherEquipement(String nom) {
     Equipement e = null;
     Iterator<Equipement> iterator = listeEquipements.iterator();
     Equipement courant;
 
-    // Parcour la liste des équipements
+    // Parcour la liste des Ã©quipements
     while (iterator.hasNext()) {
       courant = iterator.next();
 
-      // Compare chaques nom avec celui passé en paramètre
+      // Compare chaques nom avec celui passÃ© en paramÃ¨tre
       if (courant.getNom().equals(nom)) {
         e = courant;
       }
@@ -58,18 +58,18 @@ public class Profil {
     return e;
   }
 
-  /** Fonction qui indique si un équipement est déjà présent dans la liste. **/
+  /** Fonction qui indique si un Ã©quipement est dÃ©jÃ  prÃ©sent dans la liste. **/
   public boolean equipementExiste(Equipement e) {
     boolean rep = false;
 
     Iterator<Equipement> iterator = listeEquipements.iterator();
     Equipement courant;
 
-    // Parcour la liste des équipements
+    // Parcour la liste des Ã©quipements
     while (iterator.hasNext()) {
       courant = iterator.next();
 
-      // Compare chaques nom avec celui passé en paramètre
+      // Compare chaques nom avec celui passÃ© en paramÃ¨tre
       if (courant.getNom().equals(e.getNom())) {
         rep = true;
       }
@@ -78,13 +78,13 @@ public class Profil {
     return rep;
   }
 
-  /** Fonction pour afficher la liste des équipements sous forme de String. **/
-  public String toStringListA() {
+  /** Fonction pour afficher la liste des Ã©quipements sous forme de String. **/
+  public String toStringListP() {
     String list = "";
 
     Iterator<Equipement> iterator = listeEquipements.iterator();
 
-    // Parcour la liste des équipements et les concatènes en String
+    // Parcour la liste des Ã©quipements et les concatÃ¨nes en String
     while (iterator.hasNext()) {
       list += "[" + iterator.next().getNom() + "]";
     }
