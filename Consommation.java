@@ -9,12 +9,12 @@ public class Consommation {
   private float empreinte;
 
 
-  /** Constructor consommation
+  /** Constructor consommation.
    * 
    * @param unUtilisateur correspond à l'utilisateur pour lequel la consommation existe
    * @param unEquipement correspond à au premier équipement que l'utilisateur a utilisé
-   * @param distance
-   * @param mois
+   * @param distance correspond à la distance effectué avec un équipement
+   * @param mois correspond au mois de la consommation
    * 
    */
   Consommation(Utilisateur unUtilisateur, Equipement unEquipement, int distance, Date mois) {
