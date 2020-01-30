@@ -6,12 +6,21 @@ public abstract class Utilisateur {
   private String adresse;
   private String mail;
 
-  /** Constructeur de la classe Utilisateur. **/
+  /**
+   * Constructeur de la classe Utilisateur.
+   * 
+   * @param p pseudo de l'utilisateur
+   * @param m mot de passe de l'utilisateur
+   * @param pre prenom de l'utilisateur
+   * @param n nom de l'utilisateur
+   * @param ad adresse de l'utilisateur
+   * @param ma mail de l'utilisateur
+   */
 
   Utilisateur(String p, String m, String pre, String n, String ad, String ma) {
-    
+
     // On intialise le pseudo et le mot de passe si ils ne sont pas vides
-    if (p.isEmpty() != true && m.isEmpty() != true && ma.isEmpty() != true) { 
+    if (p.isEmpty() != true && m.isEmpty() != true && ma.isEmpty() != true) {
 
       this.pseudo = p;
       this.mdp = m;
@@ -19,68 +28,98 @@ public abstract class Utilisateur {
 
       if (pre.isEmpty() != true) {
         // On initialise le prénom si il n'est pas vide et si il ne contient pas de chiffre
-        if (contientChiffre(pre) == false) { 
+        if (contientChiffre(pre) == false) {
           this.prenom = pre;
         }
       }
       // On initialise le nom si il n'est pas vide et si il ne contient pas de chiffre
-      if (n.isEmpty() != true) { 
+      if (n.isEmpty() != true) {
         if (contientChiffre(n) == false) {
           this.nom = n;
         }
       }
       // On intialise l'adresse si elle n'est pas vide (elle peut contenir des chiffres)
-      if (ad.isEmpty() != true) { 
+      if (ad.isEmpty() != true) {
         this.adresse = ad;
       }
     }
 
   }
 
-  /** Getters et Setters. **/
-
-  /** Récupère la valeur du pseudo. **/
+  /**
+   * Permet de récupérer le pseudo d'un utilisateur.
+   * 
+   * @return le pseudo
+   */
   public String getPseudo() {
     return pseudo;
   }
 
-  /** Change la valeur du pseudo. **/
+  /**
+   * Permet de changer le pseudo d'un utilisateur.
+   * 
+   * @param pseudo nouveau pseudo de l'utilisateur
+   */
   public void setPseudo(String pseudo) {
     if (pseudo.isEmpty() != true) {
       this.pseudo = pseudo;
     }
   }
 
-  /** Récupère la valeur du mot de passe. **/
+  /**
+   * Permet de récupérer le mot de passe d'un utilisateur.
+   * 
+   * @return le mot de passe de l'utilisateur
+   */
   public String getMdp() {
     return mdp;
   }
 
-  /** Change la valeur du mot de passe. **/
+  /**
+   * Permet de changer le mot de passe d'un utilisateur.
+   * 
+   * @param mdp le nouveau mot de passe de l'utilisateur
+   */
   public void setMdp(String mdp) {
     if (mdp.isEmpty() != true) {
       this.mdp = mdp;
     }
   }
 
-  /** Récupère la valeur du mail. **/
+  /**
+   * Permet de récupérer le mail d'un utilisateur.
+   * 
+   * @return le mail de l'utilisateur
+   */
   public String getMail() {
     return mail;
   }
 
-  /** Change la valeur du mail. **/
+  /**
+   * Permet de changer le mot de passe d'un utilisateur.
+   * 
+   * @param mail le nouveau mail de l'utilisateur
+   */
   public void setMail(String mail) {
     if (mail.isEmpty() != true) {
       this.mail = mail;
     }
   }
 
-  /** Récupère la valeur du prénom. **/
+  /**
+   * Permet de récupérer le prénom d'un utilisateur.
+   * 
+   * @return le prénom de l'utilisateur
+   */
   public String getPrenom() {
     return prenom;
   }
 
-  /** Change la valeur du prénom. **/
+  /**
+   * Permet de changer le prénom d'un utilisateur si il ne contient pas de chiffre.
+   * 
+   * @param prenom le nouveau prénom de l'utilisateur
+   */
   public void setPrenom(String prenom) {
     if (prenom.isEmpty() != true) {
       if (contientChiffre(prenom) == false) {
@@ -89,12 +128,20 @@ public abstract class Utilisateur {
     }
   }
 
-  /** Récupère la valeur du nom. **/
+  /**
+   * Permet de récupérer le nom d'un utilisateur.
+   * 
+   * @return le nom de l'utilisateur
+   */
   public String getNom() {
     return nom;
   }
 
-  /** Change la valeur du nom. **/
+  /**
+   * Permet de changer le nom d'un utilisateur si il ne contient pas de chiffre.
+   * 
+   * @param nom le nouveau nom de l'utilisateur
+   */
   public void setNom(String nom) {
     if (nom.isEmpty() != true) {
       if (contientChiffre(nom) == false) {
@@ -103,19 +150,32 @@ public abstract class Utilisateur {
     }
   }
 
-  /** Récupère la valeur de l'adresse. **/
+  /**
+   * Permet de récupérer l'adresse d'un utilisateur.
+   * 
+   * @return l'adresse de l'utilisateur
+   */
   public String getAdresse() {
     return adresse;
   }
 
-  /** Change la valeur de l'adresse. **/
+  /**
+   * Permet de changer l'adresse d'un utilisateur.
+   * 
+   * @param adresse la nouvelle adresse de l'utilisateur
+   */
   public void setAdresse(String adresse) {
     if (adresse.isEmpty() != true) {
       this.adresse = adresse;
     }
   }
 
-  /** Méthode pour vérifier qu'une chaine de caractères ne contient pas de chiffres. **/
+  /**
+   * Permet de savoir si une chaine passée en paramètre contient des chiffres.
+   * 
+   * @param s La chaine de caractère que l'on veut analyser
+   * @return un booléen, vrai si la chaine contient un chiffre, faux sinon
+   */
 
   public boolean contientChiffre(String s) {
     boolean ok = false;

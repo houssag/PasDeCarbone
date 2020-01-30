@@ -1,4 +1,4 @@
-public class Particulier extends Utilisateur {
+public class Administrateur extends Utilisateur {
 
   /**
    * Constructeur de la classe particulier.
@@ -10,7 +10,7 @@ public class Particulier extends Utilisateur {
    * @param ma mail du particulier
    */
 
-  Particulier(String p, String m, String pre, String n, String ad, String ma) {
+  Administrateur(String p, String m, String pre, String n, String ad, String ma) {
     super(p, m, pre, n, ad, ma);
   }
 }
