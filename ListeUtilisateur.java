@@ -75,15 +75,14 @@ public class ListeUtilisateur {
 
   /** Fonction pour afficher la liste des utilisateur sous forme de String. **/
   public String toStringListA() {
-    String list = "[";
+    String list = "";
 
     Iterator<Utilisateur> iterator = listeUtilisateurs.iterator();
 
     // Parcour la liste des utilisateur et les concatènes en String
     while (iterator.hasNext()) {
-      list += iterator.next().getPseudo() + " ";
+      list += "[" + iterator.next().getPseudo() + "]";
     }
-    list += "]";
     return list;
   }
 
