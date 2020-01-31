@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Consommation {
-  // Liste de toute les consommations enregistrÈs
+  // Liste de toute les consommations enregistr√©s
   private ArrayList<ConsommationMensuelle> listeConsommation;
   public Profil profil;
 
@@ -13,9 +13,9 @@ public class Consommation {
 
 
   /**
-   * Permet d'ajouter un mois de consommation ‡ la liste de tous les mois de consommations.
+   * Permet d'ajouter un mois de consommation √† la liste de tous les mois de consommations.
    * 
-   * @param uneConsommation la consommation ‡ ajouter ‡ la liste
+   * @param uneConsommation la consommation √† ajouter √† la liste
    */
   public void ajouterConsommation(ConsommationMensuelle uneConsommation) {
 
@@ -23,8 +23,8 @@ public class Consommation {
     if (uneConsommation == null) {
       return;
     }
-    // Verifie que la consommation n'est pas dÈj‡ prÈsente dans la liste
-    if (!consommationExiste(uneConsommation)) {
+    // Verifie que la consommation n'est pas d√©j√† pr√©sente dans la liste
+    if (consommationExiste(uneConsommation)) {
       return;
     }
 
@@ -32,9 +32,9 @@ public class Consommation {
   }
 
   /**
-   * Permet de de verifier si un mois de consommation existe dÈj‡.
+   * Permet de de verifier si un mois de consommation existe d√©j√†.
    * 
-   * @param uneConsommation la consommation ‡ verifier
+   * @param uneConsommation la consommation √† verifier
    * @return renvoie si la consommation existe ou non
    */
   public boolean consommationExiste(ConsommationMensuelle uneConsommation) {
@@ -50,7 +50,7 @@ public class Consommation {
   /**
    * Description supprimerUneConsommation.
    * 
-   * @param uneConsommation la consommation ‡ supprimer de la liste
+   * @param uneConsommation la consommation √† supprimer de la liste
    */
   public boolean supprimerUneConsommation(ConsommationMensuelle uneConsommation) {
     return listeConsommation.remove(uneConsommation);
@@ -82,7 +82,7 @@ public class Consommation {
   }
 
   /**
-   * Permet de rÈcuppÈrer le profil de la consommation.
+   * Permet de r√©cupp√©rer le profil de la consommation.
    * 
    * @return renvoie la le profil
    */
@@ -91,7 +91,7 @@ public class Consommation {
   }
 
   /**
-   * Permet de dÈfinir la valeur le profil de la consommation.
+   * Permet de d√©finir la valeur le profil de la consommation.
    * 
    * @param profil est le un profil d'un utilisateur
    */
