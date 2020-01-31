@@ -48,7 +48,7 @@ public class Profil {
     }
 
     // Supprime l'équipement si présent dans la liste
-    if (rechercherEquipement(e.getNom()) != null) {
+    if (!equipementExiste(e)) {
       return false;
     }
     return listeEquipements.remove(e);
