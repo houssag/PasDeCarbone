@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class ConsommationMensuelle {
-  private Utilisateur unUtilisateur;
-  private ArrayList<Equipement> listeEquipement;
   private ArrayList<Utilisation> listeUtilisation;
   private Date mois;
 
@@ -13,18 +11,12 @@ public class ConsommationMensuelle {
   /**
    * Constructor consommation.
    * 
-   * @param unUtilisateur correspond à l'utilisateur pour lequel la consommation existe
-   * @param unEquipement correspond à au premier équipement que l'utilisateur a utilisé
    * @param distance correspond à la distance effectué avec un équipement
    * @param mois correspond au mois de la consommation
    * 
    */
-  ConsommationMensuelle(Utilisateur unUtilisateur, Equipement unEquipement,
-      Utilisation uneUtilisation, Date mois) {
-    this.unUtilisateur = unUtilisateur;
-    this.listeEquipement = new ArrayList<Equipement>();
+  ConsommationMensuelle(Utilisation uneUtilisation, Date mois) {
     this.listeUtilisation = new ArrayList<Utilisation>();
-    this.listeEquipement.add(unEquipement);
     this.listeUtilisation.add(uneUtilisation);
     this.mois = mois;
   }
@@ -37,63 +29,30 @@ public class ConsommationMensuelle {
    */
   float calculerConsommation() {
     float taux = 0;
-    for (int i = 0; i < this.listeEquipement.size(); i++) {
-      if (this.listeUtilisation.get(i) instanceof UtilisationPartage) {
-        taux = taux + (this.listeEquipement.get(i).calculerTaux()
-            * this.listeUtilisation.get(i).getQuantite())
-            / ((UtilisationPartage) this.listeUtilisation.get(i)).getNbPersonne();
-      } else {
-        taux = taux + this.listeEquipement.get(i).calculerTaux()
-            * this.listeUtilisation.get(i).getQuantite();
-      }
+    for (int i = 0; i < this.listeUtilisation.size(); i++) {
+      taux = taux + (this.listeUtilisation.get(i).getUnEquipement().calculerTaux()
+          * this.listeUtilisation.get(i).getQuantite())
+          / this.listeUtilisation.get(i).getNbPersonne();
     }
     return taux;
   }
 
   /**
-   * Renvoie l'utilisateur concerné par la consommation.
+   * Permet d'ajouter une utilisation dans la liste des utilisations pour le mois.
    * 
-   * 
-   * @return renvoie l'utilisateur concerné par la consommation
-   */
-  public Utilisateur getUtilisateur() {
-    return unUtilisateur;
-  }
-
-  /**
-   * Permet de modifier l'utilisateur concerné par la consommation.
-   * 
-   * 
-   * @param unUtilisateur est l'utilisateur qui remplacera l'ancien utilisateur concerné par la
-   *        consommation
-   */
-  public void setUnUtilisateur(Utilisateur unUtilisateur) {
-    this.unUtilisateur = unUtilisateur;
-  }
-
-  /**
-   * Permet d'ajouter un équipement et une distance dans la liste des équipements utilisés pour le
-   * mois.
-   * 
-   * @param unEquipement correspond à l'équipement à ajouter à la liste d'équipement
    * @param uneUtilisation correspond à l'utilisation de l'équipement
-   */    
-  public void ajouterUnEquipementEtUneDistance(Equipement unEquipement,
-      Utilisation uneUtilisation) {
-    this.listeEquipement.add(unEquipement);
+   */
+  public void ajouterUneUtilisation(Utilisation uneUtilisation) {
     this.listeUtilisation.add(uneUtilisation);
   }
 
   /**
-   * Permet de retirer un équipement et sa distance de la liste des équipements utilisées pour le
-   * mois.
+   * Permet de retirer une utilisation de la liste des utilisations pour le mois.
    * 
-   * @param unEquipement correspond à l'équipement à supprimer
+   * @param uneUtilisation correspond à l'utilisation à supprimer
    */
-  public void enleverUnEquipementEtUneDistance(Equipement unEquipement) {
-    int i = this.listeEquipement.indexOf(unEquipement);
-    this.listeEquipement.remove(unEquipement);
-    this.listeUtilisation.remove(i);
+  public void enleverUneUtilisation(Utilisation uneUtilisation) {
+    this.listeUtilisation.remove(uneUtilisation);
   }
 
   /**
@@ -103,8 +62,8 @@ public class ConsommationMensuelle {
    * @return Renvoie la distance parcouru avec l'équipement.
    */
   public Utilisation getDistance(Equipement unEquipement) {
-    for (int i = 0; i < this.listeEquipement.size(); i++) {
-      if (this.listeEquipement.get(i).equals(unEquipement)) {
+    for (int i = 0; i < this.listeUtilisation.size(); i++) {
+      if (this.listeUtilisation.get(i).getUnEquipement().equals(unEquipement)) {
         return this.listeUtilisation.get(i);
       }
     }

@@ -4,8 +4,10 @@ import java.util.Date;
 public class Consommation {
   // Liste de toute les consommations enregistrés
   private ArrayList<ConsommationMensuelle> listeConsommation;
+  public Profil profil;
 
-  public Consommation() {
+  public Consommation(Profil p) {
+    this.profil = p;
     listeConsommation = new ArrayList<ConsommationMensuelle>();
   }
 
@@ -79,6 +81,22 @@ public class Consommation {
     return result;
   }
 
+  /**
+   * Permet de récuppérer le profil de la consommation.
+   * 
+   * @return renvoie la le profil
+   */
+  public Profil getProfil() {
+    return profil;
+  }
 
+  /**
+   * Permet de définir la valeur le profil de la consommation.
+   * 
+   * @param profil est le un profil d'un utilisateur
+   */
+  public void setProfil(Profil profil) {
+    this.profil = profil;
+  }
 
 }

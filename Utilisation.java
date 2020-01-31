@@ -6,11 +6,11 @@ public class Utilisation {
   int nbPersonne;
 
   /**
-   * Creer une utilisation pour une utilisation par une seule personne pendant une quantitÃ© et
-   * concernant un Ã©quipement.
+   * Creer une utilisation pour une utilisation par une seule personne pendant une quantité et
+   * concernant un équipement.
    * 
-   * @param quantite dÃ©signe la quantitÃ© de l'Ã©quipement utilisÃ©
-   * @param unEquipement dÃ©signe l'Ã©quipement utilisÃ©
+   * @param quantite désigne la quantité de l'équipement utilisé
+   * @param unEquipement désigne l'équipement utilisé
    */
   public Utilisation(int quantite, Equipement unEquipement) {
     this.quantite = quantite;
@@ -19,12 +19,48 @@ public class Utilisation {
   }
 
   /**
-   * Creer une utilisation pour une utilisation par un nombre de personnes pendant une quantitÃ© et
-   * concernant un Ã©quipement.
+   * Permet de récuppérer l'équipement utilisé.
    * 
-   * @param quantite dÃ©signe la quantitÃ© de l'Ã©quipement utilisÃ©
-   * @param unEquipement dÃ©signe l'Ã©quipement utilisÃ©
-   * @param nbPersonne dÃ©signe le nombre de personne utilisant l'Ã©quipement
+   * @return un Equipement
+   */
+  public Equipement getUnEquipement() {
+    return unEquipement;
+  }
+
+  /**
+   * Permet de définir l'équipement utilisé.
+   * 
+   * @param unEquipement est un Equipement
+   */
+  public void setUnEquipement(Equipement unEquipement) {
+    this.unEquipement = unEquipement;
+  }
+
+  /**
+   * Permet de récuppérer le nombre de personnes qui utilisent l'équipement.
+   * 
+   * @return
+   */
+  public int getNbPersonne() {
+    return nbPersonne;
+  }
+
+  /**
+   * Permet de définir le nombre de personnes qui utilisent l'équipement.
+   * 
+   * @param nbPersonne est le nombre de personnes
+   */
+  public void setNbPersonne(int nbPersonne) {
+    this.nbPersonne = nbPersonne;
+  }
+
+  /**
+   * Creer une utilisation pour une utilisation par un nombre de personnes pendant une quantité et
+   * concernant un équipement.
+   * 
+   * @param quantite désigne la quantité de l'équipement utilisé
+   * @param unEquipement désigne l'équipement utilisé
+   * @param nbPersonne désigne le nombre de personne utilisant l'équipement
    */
   public Utilisation(int quantite, Equipement unEquipement, int nbPersonne) {
     this.quantite = quantite;
@@ -32,11 +68,20 @@ public class Utilisation {
     this.nbPersonne = nbPersonne;
   }
 
-
+  /**
+   * Permet de récupérer la quantite qui est une distance/surface d'un équipement.
+   * 
+   * @return la quantite
+   */
   public int getQuantite() {
     return quantite;
   }
 
+  /**
+   * Permet de définir la quantite qui est une distance/surface d'un équipement.
+   * 
+   * @param quantite est une distance/surface d'un équipement
+   */
   public void setQuantite(int quantite) {
     this.quantite = quantite;
   }
