@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+
 import java.security.Timestamp;
 import java.sql.Time;
 import java.util.Date;
@@ -55,21 +56,19 @@ public class Main {
     Particulier p2 = new Particulier("Diego", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
     ListeUtilisateur l1 = new ListeUtilisateur();
     l1.ajouterUtilisateur(p2);
+    l1.ajouterUtilisateur(p1);
     l1.supprimerUtilisateur(p2);
-    assertEquals("Erreur Liste ne correspond pas", "[Diego]", l1.toStringListA());
+    assertEquals("Erreur Liste ne correspond pas", "[DonMartin]", l1.toStringListA());
+
   }
 
   @Test
   public void rechercherUnUtilisateur() {
-    Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
     ListeUtilisateur l1 = new ListeUtilisateur();
     assertEquals("Erreur Liste ne correspond pas", null, l1.rechercherUtilisateur("Diego"));
-    l1.ajouterUtilisateur(p1);
-    assertEquals("Erreur Liste ne correspond pas", p1, l1.rechercherUtilisateur("Diego"));
-
     Particulier p2 = new Particulier("Diego", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
     l1.ajouterUtilisateur(p2);
-    assertEquals("Erreur Liste ne correspond pas", p1, l1.rechercherUtilisateur("Diego"));
+    assertEquals("Erreur Liste ne correspond pas", p2, l1.rechercherUtilisateur("Diego"));
   }
 
   @Test
@@ -241,15 +240,14 @@ public class Main {
   public void supprimerEquipement() {
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
     Profil pr1 = new Profil(p1);
-    Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     Voiture v2 = new Voiture("Twingo", Voiture.TypeCarburant.Diesel, 12);
-    pr1.ajouterEquipement(v1);
     pr1.ajouterEquipement(v2);
-
-    assertEquals("L'équipement n'a pas été supprimé", true, pr1.supprimerEquipement(v1));
-    assertEquals("L'équipement a été supprimé", false, pr1.supprimerEquipement(v1));
+    
+    Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
+    assertEquals("L'équipement n'a pas été supprimé", false, pr1.supprimerEquipement(v1));
+    pr1.ajouterEquipement(v1);
+    assertEquals("L'équipement a été supprimé", true, pr1.supprimerEquipement(v1));
     assertEquals("L'équipement est toujours dans la liste", "[Twingo]", pr1.toStringListP());
-
   }
 
   /** Création Utilisation. **/
@@ -290,7 +288,7 @@ public class Main {
 
     ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(System.currentTimeMillis()));
     cm1.ajouterUneUtilisation(u1);
-    assertEquals("L'équipement ne correspond pas", u1, cm1.getDistance(v1));
+    assertEquals("L'équipement ne correspond pas", u1, cm1.getUtilisation(v1));
   }
 
   @Test
@@ -345,11 +343,11 @@ public class Main {
     assertEquals("L'équipement ne correspond pas", null,
         c1.recupererConsommationDate(new Date(2020121)));
     c1.ajouterConsommation(cm1);
-    assertEquals("L'équipement ne correspond pas", "Wesh",
+    assertEquals("L'équipement ne correspond pas", cm1,
         c1.recupererConsommationDate(new Date(2020121)));
     ConsommationMensuelle cm2 = new ConsommationMensuelle(u1, new Date(25555));
     c1.ajouterConsommation(cm2);
-    assertEquals("L'équipement ne correspond pas", "Wesh",
+    assertEquals("L'équipement ne correspond pas", cm1,
         c1.recupererConsommationDate(new Date(2020121)));
 
 
