@@ -29,7 +29,7 @@ public class ConsommationMensuelle {
    */
   float calculerConsommation() {
     float taux = 0;
-    for (int i = 0; i < this.listeUtilisation.size(); i++) {
+    for (int i = 0; i < this.listeUtilisation.size() - 1; i++) {
       taux = taux + (this.listeUtilisation.get(i).getUnEquipement().calculerTaux()
           * this.listeUtilisation.get(i).getQuantite())
           / this.listeUtilisation.get(i).getNbPersonne();
@@ -56,12 +56,12 @@ public class ConsommationMensuelle {
   }
 
   /**
-   * Permet de récuperer la distance parcouru par l'équipement en parametre.
+   * Permet de récuperer l'utilisation d'un équipement.
    * 
-   * @param unEquipement correspond à l'équipement pour lequel récuperer la distance.
-   * @return Renvoie la distance parcouru avec l'équipement.
+   * @param unEquipement correspond à l'équipement.
+   * @return Renvoie l'utilisation.
    */
-  public Utilisation getDistance(Equipement unEquipement) {
+  public Utilisation getUtilisation(Equipement unEquipement) {
     for (int i = 0; i < this.listeUtilisation.size(); i++) {
       if (this.listeUtilisation.get(i).getUnEquipement().equals(unEquipement)) {
         return this.listeUtilisation.get(i);
@@ -95,6 +95,24 @@ public class ConsommationMensuelle {
    */
   public float getConsommation() {
     return empreinte;
+  }
+
+  /**
+   * Permet de récupèrer la liste des utilisations du mois.
+   * 
+   * @return la liste des utilisations
+   */
+  public ArrayList<Utilisation> getListeUtilisation() {
+    return listeUtilisation;
+  }
+
+  /**
+   * Permet de définir la liste des utilisations du mois.
+   * 
+   * @param listeUtilisation est la liste des utilisations
+   */
+  public void setListeUtilisation(ArrayList<Utilisation> listeUtilisation) {
+    this.listeUtilisation = listeUtilisation;
   }
 
 }

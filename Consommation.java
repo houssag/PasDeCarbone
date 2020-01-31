@@ -71,11 +71,11 @@ public class Consommation {
    * @param mois Prend en parametre le mois choisis.
    * @return Renvoie la liste de toute les consommations du mois en parametre.
    */
-  public ArrayList<ConsommationMensuelle> recupererConsommationDate(Date mois) {
-    ArrayList<ConsommationMensuelle> result = new ArrayList<ConsommationMensuelle>();
+  public ConsommationMensuelle recupererConsommationDate(Date mois) {
+    ConsommationMensuelle result = null;
     for (ConsommationMensuelle uneConsommationDeLaListe : listeConsommation) {
       if (uneConsommationDeLaListe.getMois().equals(mois)) {
-        result.add(uneConsommationDeLaListe);
+        result = uneConsommationDeLaListe;
       }
     }
     return result;
