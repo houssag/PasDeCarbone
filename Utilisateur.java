@@ -28,13 +28,13 @@ public abstract class Utilisateur {
 
       if (pre.isEmpty() != true) {
         // On initialise le prénom si il n'est pas vide et si il ne contient pas de chiffre
-        if (contientChiffre(pre) == false) {
+        if (estInvalide(pre) == false) {
           this.prenom = pre;
         }
       }
       // On initialise le nom si il n'est pas vide et si il ne contient pas de chiffre
       if (n.isEmpty() != true) {
-        if (contientChiffre(n) == false) {
+        if (estInvalide(n) == false) {
           this.nom = n;
         }
       }
@@ -96,7 +96,7 @@ public abstract class Utilisateur {
   }
 
   /**
-   * Permet de changer le mot de passe d'un utilisateur.
+   * Permet de changer le mail d'un utilisateur.
    * 
    * @param mail le nouveau mail de l'utilisateur
    */
@@ -122,7 +122,7 @@ public abstract class Utilisateur {
    */
   public void setPrenom(String prenom) {
     if (prenom.isEmpty() != true) {
-      if (contientChiffre(prenom) == false) {
+      if (estInvalide(prenom) == false) {
         this.prenom = prenom;
       }
     }
@@ -144,7 +144,7 @@ public abstract class Utilisateur {
    */
   public void setNom(String nom) {
     if (nom.isEmpty() != true) {
-      if (contientChiffre(nom) == false) {
+      if (estInvalide(nom) == false) {
         this.nom = nom;
       }
     }
@@ -171,16 +171,16 @@ public abstract class Utilisateur {
   }
 
   /**
-   * Permet de savoir si une chaine passée en paramètre contient des chiffres.
+   * Permet de savoir si une chaîne passée en paramètre ne contient que des caractères contenus dans un prénom.
    * 
-   * @param s La chaine de caractère que l'on veut analyser
-   * @return un booléen, vrai si la chaine contient un chiffre, faux sinon
+   * @param s La chaîne de caractère que l'on veut analyser
+   * @return un booléen, vrai si la chaîne ne correspond pas aux exigences, faux sinon
    */
 
-  public boolean contientChiffre(String s) {
+  public boolean estInvalide(String s) {
     boolean ok = false;
     for (int i = 0; i < s.length(); i++) {
-      if (Character.isDigit(s.charAt(i)) == true) {
+      if (Character.isLetter(s.charAt(i)) == false || s.charAt(i) != '-' || s.charAt(i) != '\'') {
         ok = true;
       }
     }

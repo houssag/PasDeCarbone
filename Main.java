@@ -1,10 +1,9 @@
 import static org.junit.Assert.assertEquals;
-
 import java.security.Timestamp;
 import java.sql.Time;
 import java.util.Date;
-import org.junit.experimental.categories.Category;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
 
 public class Main {
   /** Classe de test. **/
@@ -26,11 +25,11 @@ public class Main {
   public void verificationString() {
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
 
-    assertEquals("Erreur nom ne correspond pas", true, p1.contientChiffre("123456"));
-    assertEquals("Erreur nom ne correspond pas", false, p1.contientChiffre("test"));
-    assertEquals("Erreur nom ne correspond pas", true, p1.contientChiffre("te123st"));
+    assertEquals("Erreur nom ne correspond pas", true, p1.estInvalide("123456"));
+    assertEquals("Erreur nom ne correspond pas", false, p1.estInvalide("test"));
+    assertEquals("Erreur nom ne correspond pas", true, p1.estInvalide("te123st"));
     assertEquals("Erreur le nom contient des caractères spéciaux et n'est pas détécté", true,
-        p1.contientChiffre("t€e@st"));
+        p1.estInvalide("t€e@st"));
   }
 
   /** Création listeUtilisateur. **/
