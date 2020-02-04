@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Consommation {
-  // Liste de toute les consommations enregistrÃ©s
+  // Liste de toute les consommations enregistrés
   private ArrayList<ConsommationMensuelle> listeConsommation;
   public Profil profil;
 
@@ -13,9 +13,9 @@ public class Consommation {
 
 
   /**
-   * Permet d'ajouter un mois de consommation Ã  la liste de tous les mois de consommations.
+   * Permet d'ajouter un mois de consommation à la liste de tous les mois de consommation.
    * 
-   * @param uneConsommation la consommation Ã  ajouter Ã  la liste
+   * @param uneConsommation la consommation à ajouter à la liste
    */
   public void ajouterConsommation(ConsommationMensuelle uneConsommation) {
 
@@ -23,7 +23,7 @@ public class Consommation {
     if (uneConsommation == null) {
       return;
     }
-    // Verifie que la consommation n'est pas dÃ©jÃ  prÃ©sente dans la liste
+    // Verifie que la consommation n'est pas déjà présente dans la liste
     if (consommationExiste(uneConsommation)) {
       return;
     }
@@ -32,10 +32,10 @@ public class Consommation {
   }
 
   /**
-   * Permet de de verifier si un mois de consommation existe dÃ©jÃ .
+   * Permet de de verifier si un mois de consommation existe déjà.
    * 
-   * @param uneConsommation la consommation Ã  verifier
-   * @return renvoie si la consommation existe ou non
+   * @param uneConsommation la consommation à verifier
+   * @return renvoie true si la consommation existe, false sinon
    */
   public boolean consommationExiste(ConsommationMensuelle uneConsommation) {
     for (ConsommationMensuelle uneConsommationDeLaListe : listeConsommation) {
@@ -50,7 +50,8 @@ public class Consommation {
   /**
    * Description supprimerUneConsommation.
    * 
-   * @param uneConsommation la consommation Ã  supprimer de la liste
+   * @param uneConsommation la consommation à supprimer de la liste
+   * @return true si la suppression de uneConsommation a été effectuée, false sinon.
    */
   public boolean supprimerUneConsommation(ConsommationMensuelle uneConsommation) {
     return listeConsommation.remove(uneConsommation);
@@ -82,16 +83,16 @@ public class Consommation {
   }
 
   /**
-   * Permet de rÃ©cuppÃ©rer le profil de la consommation.
+   * Permet de récupérer le profil de la consommation.
    * 
-   * @return renvoie la le profil
+   * @return renvoie le profil
    */
   public Profil getProfil() {
     return profil;
   }
 
   /**
-   * Permet de dÃ©finir la valeur le profil de la consommation.
+   * Permet de définir la valeur le profil de la consommation.
    * 
    * @param profil est le un profil d'un utilisateur
    */

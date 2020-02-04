@@ -19,7 +19,7 @@ public class Utilisation {
   }
 
   /**
-   * Permet de récuppérer l'équipement utilisé.
+   * Permet de récupérer l'équipement utilisé.
    * 
    * @return un Equipement
    */
@@ -37,9 +37,9 @@ public class Utilisation {
   }
 
   /**
-   * Permet de récuppérer le nombre de personnes qui utilisent l'équipement.
+   * Permet de récupérer le nombre de personnes qui utilisent l'équipement.
    * 
-   * @return
+   * @return le nombre de personnes utilisant l'équipement
    */
   public int getNbPersonne() {
     return nbPersonne;
@@ -78,7 +78,7 @@ public class Utilisation {
   }
 
   /**
-   * Permet de définir la quantite qui est une distance/surface d'un équipement.
+   * Permet de définir la quantité qui est une distance/surface d'un équipement.
    * 
    * @param quantite est une distance/surface d'un équipement
    */

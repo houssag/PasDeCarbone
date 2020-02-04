@@ -7,7 +7,8 @@ public class Profil {
 
   /**
    * Constructeur de la classe Profil. listeUtilisateurs regroupe une liste d'utilisateur, elle est
-   * initialisé dans le constructeur L'utilisateur peut être un admin, un analyste ou un particulier
+   * initialisée dans le constructeur.
+   * L'utilisateur peut être un admin, un analyste ou un particulier.
    * 
    * @param u est un utilisateur
    */
@@ -35,7 +36,8 @@ public class Profil {
   }
 
   /**
-   * Fonction pour supprimer un équipement de la liste. Un équipement est un véhicule
+   * Fonction pour supprimer un équipement de la liste.
+   * Un équipement peut être un véhicule par exemple.
    * 
    * @param e est un équipement
    * @return un boolean vrai si l'équipement a bien été supprimé de listeEquipements, faux sinon
@@ -55,8 +57,8 @@ public class Profil {
   }
 
   /**
-   * Fonction pour rechercher un équipement avec son nom. Un équipement est un véhicule
-   * 
+   * Fonction pour rechercher un équipement avec son nom.
+   * Un équipement peut être un véhicule par exemple.
    * @param nom est le nom de l'équipement recherché
    * @return l'objet Equipement si trouvé dans la listeEquipements, null sinon
    */

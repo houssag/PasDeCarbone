@@ -8,7 +8,7 @@ public class Train extends Equipement {
   public enum TypeTrain {
     TGV_Inoui, TGV_Lyria, OUIGO, Intercites, Eurostar, Thalys, Gala, Alleo, Transilien, RER, TER
   }
-  //Différent type de trains, ordonnées de façon à correspondre
+  //Différents types de trains, ordonnées de façon à correspondre
   //à leurs consommations respectives dans le tableau des consommations.
 
   private TypeTrain type;
@@ -26,9 +26,9 @@ public class Train extends Equipement {
   }
 
   /**
-   * Cette fonction sert à obtenir le taux d'émission CO2 en fonction du type de train.
+   * Cette fonction sert à obtenir le taux d'émission CO2 d'un train.
    * 
-   * @return La consommation moyenne par kilomètre d'un train en fonction de son type
+   * @return La consommation moyenne par kilomètre d'un train
    */
   public float calculerTaux() {
     return consoTrain[type.ordinal()];

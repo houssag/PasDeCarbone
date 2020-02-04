@@ -18,7 +18,7 @@ public class Avion extends Equipement {
 
   /**
    * Renvoie le taux calculé en fonction du carburant et de la consommation en litres pas km.
-   * @return Le taux d'émission CO2 de la voiture
+   * @return Le taux d'émission CO2 de l'avion
    */
   public float calculerTaux() {
     float total;
@@ -47,7 +47,7 @@ public class Avion extends Equipement {
   
   /**
    * Renvoie vrai si l'avion a été pris en classe économique, sinon faux.
-   * @return un booléen représentant
+   * @return true si le voyage a été effectué en classe économique, false sinon
    */
   public boolean isEconomique() {
     return economique;

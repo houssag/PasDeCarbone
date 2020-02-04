@@ -10,7 +10,7 @@ public class ListeUtilisateur {
 
   /**
    * Constructeur de la classe ListeUtilisateur. listeUtilisateurs regroupe une liste d'utilisateur,
-   * elle est initialisé dans le constructeur
+   * elle est initialisé dans le constructeur.
    */
   public ListeUtilisateur() {
     listeUtilisateurs = new ArrayList<Utilisateur>();
@@ -18,7 +18,7 @@ public class ListeUtilisateur {
 
   /**
    * Fonction permettant d'ajouter un utilisateur à la liste. L'utilisateur peut être un admin, un
-   * analyste ou un particulier
+   * analyste ou un particulier.
    * 
    * @param u est un utilisateur
    */
@@ -37,7 +37,7 @@ public class ListeUtilisateur {
 
   /**
    * Fonction pour supprimer un utilisateur de la liste. L'utilisateur peut être un admin, un
-   * analyste ou un particulier
+   * analyste ou un particulier.
    * 
    * @param u est un utilisateur
    */
@@ -51,7 +51,7 @@ public class ListeUtilisateur {
 
   /**
    * Fonction pour rechercher un utilisateur avec son pseudo. L'utilisateur peut être un admin, un
-   * analyste ou un particulier
+   * analyste ou un particulier.
    * 
    * @param pseudo Il est unique à chaques utilisateurs
    * @return un utilisateur ou null si rien trouvé
@@ -65,7 +65,7 @@ public class ListeUtilisateur {
     while (iterator.hasNext()) {
       courant = iterator.next();
 
-      // Compare chaques pseudo avec celui passé en paramètre
+      // Compare chaque pseudo avec celui passé en paramètre
       if (courant.getPseudo().equals(pseudo)) {
         u = courant;
       }
@@ -75,7 +75,7 @@ public class ListeUtilisateur {
 
   /**
    * Fonction qui indique si un utilisateur est déjà présent dans la liste. L'utilisateur peut être
-   * un admin, un analyste ou un particulier
+   * un admin, un analyste ou un particulier.
    * 
    * @param u est un utilisateur
    * @return un boolean vrai si l'utilisateur existe dans la listeUtilisateurs, faux sinon

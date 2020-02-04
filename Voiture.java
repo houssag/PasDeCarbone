@@ -35,15 +35,16 @@ public class Voiture extends Equipement {
   }
 
   /**
-   * Renvoie la valeur en g de CO2 émis par un litre de Diesel.
-   * @return La valeur en g de CO2 émis par un litre de Diesel
+   * Renvoie la valeur en g de CO2 émis par un litre de type de carburant donné.
+   * @param t le type de carburant dont on veut l'émission en CO2
+   * @return La valeur en g de CO2 émis par un litre du type de carburant donné
    */
   public static int getEmissionCarburant(TypeCarburant t) {
     return consoVoiture[t.ordinal()];
   }
 
   /**
-   * Modifie la valeur en g de CO2 émis par un litre de diesel.
+   * Modifie la valeur en g de CO2 émis par un type de carburant donné.
    * @param t Le type de carburant dont il faut modifier l'émission de CO2
    * @param i La nouvelle valeur en g de CO2 émis par un litre ou Nm3 du type de carburant
    */

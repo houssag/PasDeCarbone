@@ -69,6 +69,8 @@ public class Chauffage extends Equipement {
    * été utilisé, on procède au calcul avec le kWh, sinon on calcule en fonction de la surface, du
    * type d'habitation et de sa date de construction. Le type de chauffage est toujours pris en
    * compte.
+   * 
+   * @return le taux d'émission de CO2 du chauffage
    */
   public float calculerTaux() {
     if (kwh != -1) {
@@ -107,7 +109,7 @@ public class Chauffage extends Equipement {
   /**
    * Modifie le type de chauffage utilisé.
    * 
-   * @param le nouveau type de chauffage utilisé
+   * @param type le nouveau type de chauffage utilisé
    */
   public void setType(TypeChauffage type) {
     this.type = type;
@@ -143,7 +145,7 @@ public class Chauffage extends Equipement {
   /**
    * Modifie la consommation en kWh.
    * 
-   * @param la nouvelle consommation en kWh
+   * @param kwh la nouvelle consommation en kWh
    */
   public void setKwh(int kwh) {
     this.kwh = kwh;

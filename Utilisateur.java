@@ -171,7 +171,8 @@ public abstract class Utilisateur {
   }
 
   /**
-   * Permet de savoir si une chaîne passée en paramètre ne contient que des caractères contenus dans un prénom.
+   * Permet de savoir si une chaîne passée en paramètre ne contient que des caractères
+   * contenus dans un prénom.
    * 
    * @param s La chaîne de caractère que l'on veut analyser
    * @return un booléen, vrai si la chaîne ne correspond pas aux exigences, faux sinon
