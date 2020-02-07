@@ -19,7 +19,8 @@ public class Voiture extends Equipement {
   Voiture(String n, TypeCarburant c, float lpk) {
     super(n);
     carburant = c;
-    litresParKm = lpk;
+    if(lpk >0)litresParKm = lpk;
+    else lpk = 0;
   }
   
   /**
@@ -77,7 +78,7 @@ public class Voiture extends Equipement {
    * @param lpk la nouvelle consommation en litres (ou Nm3 pour le CNG) de carburant en un km
    */
   public void setLitresParKm(float lpk) {
-    litresParKm = lpk;
+    if(lpk >= 0) litresParKm = lpk;
   }
 
 }

@@ -7,7 +7,9 @@ abstract class Equipement {
    * @param n le nom de l'équipement
    */
   Equipement(String n) {
-    nom = n;
+	  
+    if(estInvalide(n) || n.length() <= 0) nom = "defaultName";
+    else nom = n;
   }
 
   /**
@@ -29,7 +31,16 @@ abstract class Equipement {
    * @param nom nouveau nom de l'équipement
    */
   public void setNom(String nom) {
-    this.nom = nom;
+	  if(!estInvalide(nom)) this.nom = nom;
   }
+  
+  public boolean estInvalide(String s) {
+	    for (int i = 0; i < s.length(); i++) {
+	      if (Character.isLetter(s.charAt(i)) == false && Integer.getInteger(String.valueOf(s.charAt(i))) == null) {
+	        return true;
+	      }
+	    }
+	    return false;
+	  }
 
 }

@@ -13,7 +13,8 @@ public class Avion extends Equipement {
   Avion(String n, boolean eco, int d) {
     super(n);
     economique = eco;
-    distance = d;
+   if(d >= 0) distance = d;
+   else distance = 0;
   }
 
   /**
@@ -41,8 +42,8 @@ public class Avion extends Equipement {
    * Modifie l'émission moyenne de CO2 en g d'un avion en 1 km parcouru.
    * @param epk la nouvelle émission moyenne de CO2 en g d'un avion en 1 km parcouru
    */
-  public static void setEmissionParKm(float epk) {
-    EMISSIONPARKM = epk;
+  public void setEmissionParKm(float epk) {
+    if(epk >= 0) EMISSIONPARKM = epk;
   }
   
   /**
