@@ -6,16 +6,16 @@ import org.junit.Test;
 public class Main {
   /** Classe de test. **/
 
-  /** Création de particulier. **/
+  /** CrÃ©ation de particulier. **/
   @Test
   public void creationUtilisateur() {
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
     Particulier p2 = new Particulier("Diego", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
 
     assertEquals("Erreur nom ne correspond pas", "Leblanc", p1.getNom());
-    assertEquals("Erreur prénom ne correspond pas", "Michel", p1.getPrenom());
+    assertEquals("Erreur prÃ©nom ne correspond pas", "Michel", p1.getPrenom());
     assertEquals("Erreur nom ne correspond pas", "Lenoir", p2.getNom());
-    assertEquals("Erreur prénom ne correspond pas", "Roger", p2.getPrenom());
+    assertEquals("Erreur prÃ©nom ne correspond pas", "Roger", p2.getPrenom());
 
     Particulier p3 = new Particulier("", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
 
@@ -32,7 +32,7 @@ public class Main {
 
   }
 
-  /** Création Utilisateur. **/
+  /** CrÃ©ation Utilisateur. **/
   @Test
   public void verificationString() {
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
@@ -40,11 +40,11 @@ public class Main {
     assertEquals("Erreur nom ne correspond pas", true, p1.estInvalide("123456"));
     assertEquals("Erreur nom ne correspond pas", false, p1.estInvalide("test"));
     assertEquals("Erreur nom ne correspond pas", true, p1.estInvalide("te123st"));
-    assertEquals("Erreur le nom contient des caractères spéciaux et n'est pas détécté", true,
-        p1.estInvalide("t€e@st"));
+    assertEquals("Erreur le nom contient des caractÃ¨res spÃ©ciaux et n'est pas dÃ©tÃ©ctÃ©", true,
+        p1.estInvalide("tâ‚¬e@st"));
   }
 
-  /** Création listeUtilisateur. **/
+  /** CrÃ©ation listeUtilisateur. **/
 
   @Test
   public void creationListeUtilisateur() {
@@ -96,7 +96,7 @@ public class Main {
   }
 
 
-  /** Création Train. **/
+  /** CrÃ©ation Train. **/
   @Test
   public void creerTrain() {
     Train t1 = new Train("tchoutchou", Train.TypeTrain.OUIGO);
@@ -110,7 +110,7 @@ public class Main {
     assertEquals("Erreur le taux ne correspond pas", 1.9 + "", t1.calculerTaux() + "");
   }
 
-  /** Création avion. **/
+  /** CrÃ©ation avion. **/
   @Test
   public void creerAvion() {
     Avion a1 = new Avion("avion", true, 360);
@@ -143,7 +143,7 @@ public class Main {
   }
 
 
-  /** Création voiture. **/
+  /** CrÃ©ation voiture. **/
   @Test
   public void creationVoiture() {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
@@ -156,7 +156,7 @@ public class Main {
   @Test
   public void emissionCarburantVoiture() {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-    assertEquals("Erreur l'émission ne correspond pas", 2640,
+    assertEquals("Erreur l'Ã©mission ne correspond pas", 2640,
         v1.getEmissionCarburant(v1.getCarburant()));
   }
 
@@ -170,15 +170,15 @@ public class Main {
   public void setEmissionCarburant() {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     v1.setEmissionCarburant(v1.getCarburant(), 2540);
-    assertEquals("Erreur l'émission ne correspond pas", 2540,
+    assertEquals("Erreur l'Ã©mission ne correspond pas", 2540,
         v1.getEmissionCarburant(v1.getCarburant()));
     v1.setEmissionCarburant(v1.getCarburant(), 2640);
-    assertEquals("Erreur l'émission ne correspond pas", 2640,
+    assertEquals("Erreur l'Ã©mission ne correspond pas", 2640,
         v1.getEmissionCarburant(v1.getCarburant()));
   }
 
 
-  /** création Chauffage. **/
+  /** crÃ©ation Chauffage. **/
 
   @Test
   public void creationChauffage() {
@@ -202,7 +202,7 @@ public class Main {
 
   }
 
-  /** Création Profil. **/
+  /** CrÃ©ation Profil. **/
   @Test
   public void creationProfile() {
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
@@ -228,7 +228,7 @@ public class Main {
     pr1.ajouterEquipement(v1);
     pr1.ajouterEquipement(v2);
 
-    assertEquals("L'équipement ne correspond pas", v1, pr1.rechercherEquipement("Porsche"));
+    assertEquals("L'Ã©quipement ne correspond pas", v1, pr1.rechercherEquipement("Porsche"));
 
   }
 
@@ -240,8 +240,8 @@ public class Main {
     Voiture v2 = new Voiture("Twingo", Voiture.TypeCarburant.Diesel, 12);
     pr1.ajouterEquipement(v1);
 
-    assertEquals("L'équipement n'a pas été trouvé", true, pr1.equipementExiste(v1));
-    assertEquals("L'équipement a été trouvé alors qu'il devrait pas", false,
+    assertEquals("L'Ã©quipement n'a pas Ã©tÃ© trouvÃ©", true, pr1.equipementExiste(v1));
+    assertEquals("L'Ã©quipement a Ã©tÃ© trouvÃ© alors qu'il devrait pas", false,
         pr1.equipementExiste(v2));
 
   }
@@ -255,22 +255,22 @@ public class Main {
     pr1.ajouterEquipement(v2);
 
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-    assertEquals("L'équipement n'a pas été supprimé", false, pr1.supprimerEquipement(v1));
+    assertEquals("L'Ã©quipement n'a pas Ã©tÃ© supprimÃ©", false, pr1.supprimerEquipement(v1));
     pr1.ajouterEquipement(v1);
-    assertEquals("L'équipement a été supprimé", true, pr1.supprimerEquipement(v1));
-    assertEquals("L'équipement est toujours dans la liste", "[Twingo]", pr1.toStringListP());
+    assertEquals("L'Ã©quipement a Ã©tÃ© supprimÃ©", true, pr1.supprimerEquipement(v1));
+    assertEquals("L'Ã©quipement est toujours dans la liste", "[Twingo]", pr1.toStringListP());
   }
 
-  /** Création Utilisation. **/
+  /** CrÃ©ation Utilisation. **/
 
   @Test
   public void creerUtilisation() {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     Utilisation u1 = new Utilisation(360, v1);
-    assertEquals("L'équipement ne correspond pas", v1, u1.getUnEquipement());
-    assertEquals("L'équipement ne correspond pas", 1, u1.getNbPersonne());
+    assertEquals("L'Ã©quipement ne correspond pas", v1, u1.getUnEquipement());
+    assertEquals("L'Ã©quipement ne correspond pas", 1, u1.getNbPersonne());
     Utilisation u2 = new Utilisation(360, v1, 2);
-    assertEquals("L'équipement ne correspond pas", 2, u2.getNbPersonne());
+    assertEquals("L'Ã©quipement ne correspond pas", 2, u2.getNbPersonne());
   }
 
 
@@ -285,7 +285,7 @@ public class Main {
 
     ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(System.currentTimeMillis()));
     cm1.ajouterUneUtilisation(u1);
-    // assertEquals("L'équipement ne correspond pas", , cm1.get());
+    // assertEquals("L'Ã©quipement ne correspond pas", , cm1.get());
 
   }
 
@@ -299,7 +299,7 @@ public class Main {
 
     ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(System.currentTimeMillis()));
     cm1.ajouterUneUtilisation(u1);
-    assertEquals("L'équipement ne correspond pas", u1, cm1.getUtilisation(v1));
+    assertEquals("L'Ã©quipement ne correspond pas", u1, cm1.getUtilisation(v1));
   }
 
   @Test
@@ -311,12 +311,12 @@ public class Main {
     pr1.ajouterEquipement(v1);
     ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(System.currentTimeMillis()));
     cm1.ajouterUneUtilisation(u1);
-    assertEquals("L'équipement ne correspond pas", Math.toIntExact(2640 * 12 * 360 / 1) + "",
+    assertEquals("L'Ã©quipement ne correspond pas", Math.toIntExact(2640 * 12 * 360 / 1) + "",
         Math.toIntExact((long) cm1.calculerConsommation()) + "");
     Voiture v2 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     pr1.ajouterEquipement(v2);
     cm1.ajouterUneUtilisation(u1);
-    assertEquals("L'équipement ne correspond pas", Math.toIntExact(2640 * 12 * 360 * 2 / 1) + "",
+    assertEquals("L'Ã©quipement ne correspond pas", Math.toIntExact(2640 * 12 * 360 * 2 / 1) + "",
         Math.toIntExact((long) cm1.calculerConsommation()) + "");
   }
 
@@ -333,10 +333,10 @@ public class Main {
     Consommation c1 = new Consommation(pr1);
 
     ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(System.currentTimeMillis()));
-    assertEquals("L'équipement ne correspond pas", false, c1.consommationExiste(cm1));
+    assertEquals("L'Ã©quipement ne correspond pas", false, c1.consommationExiste(cm1));
 
     c1.ajouterConsommation(cm1);
-    assertEquals("L'équipement ne correspond pas", true, c1.consommationExiste(cm1));
+    assertEquals("L'Ã©quipement ne correspond pas", true, c1.consommationExiste(cm1));
 
   }
 
@@ -351,21 +351,65 @@ public class Main {
     Consommation c1 = new Consommation(pr1);
 
     ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(2020121));
-    assertEquals("L'équipement ne correspond pas", null,
+    assertEquals("L'Ã©quipement ne correspond pas", null,
         c1.recupererConsommationDate(new Date(2020121)));
     c1.ajouterConsommation(cm1);
-    assertEquals("L'équipement ne correspond pas", cm1,
+    assertEquals("L'Ã©quipement ne correspond pas", cm1,
         c1.recupererConsommationDate(new Date(2020121)));
     ConsommationMensuelle cm2 = new ConsommationMensuelle(u1, new Date(25555));
     c1.ajouterConsommation(cm2);
-    assertEquals("L'équipement ne correspond pas", cm1,
+    assertEquals("L'Ã©quipement ne correspond pas", cm1,
         c1.recupererConsommationDate(new Date(2020121)));
 
 
-    assertEquals("L'équipement ne correspond pas", true, c1.consommationExiste(cm1));
+    assertEquals("L'Ã©quipement ne correspond pas", true, c1.consommationExiste(cm1));
 
   }
 
+    /** Scenario type d'utilisation. **/
+  @Test
+  public void testScenario() {
+    Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
+    Particulier p2 = new Particulier("Diego", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
 
+    ListeUtilisateur l1 = new ListeUtilisateur();
+    l1.ajouterUtilisateur(p1);
+    l1.ajouterUtilisateur(p2);
+
+    Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
+    Avion a1 = new Avion("avion", true, 360);
+    Train t1 = new Train("tchoutchou", Train.TypeTrain.OUIGO);
+    Chauffage ch1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois, 15);
+
+    Utilisation u1 = new Utilisation(1200, v1);
+    Utilisation u2 = new Utilisation(2, a1);
+    Utilisation u3 = new Utilisation(12, t1);
+    Utilisation u4 = new Utilisation(1, ch1);
+
+    ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(2020121));
+    cm1.ajouterUneUtilisation(u3);
+
+    ConsommationMensuelle cm2 = new ConsommationMensuelle(u2, new Date(2020121));
+    cm2.ajouterUneUtilisation(u4);
+
+    ConsommationMensuelle cm3 = new ConsommationMensuelle(u1, new Date(2020121));
+    cm3.ajouterUneUtilisation(u2);
+
+    ConsommationMensuelle cm4 = new ConsommationMensuelle(u2, new Date(2020121));
+    cm4.ajouterUneUtilisation(u1);
+
+    Profil pr1 = new Profil(p1);
+    Consommation c1 = new Consommation(pr1);
+    c1.ajouterConsommation(cm1);
+
+    Profil pr2 = new Profil(p2);
+    Consommation c2 = new Consommation(pr2);
+    c2.ajouterConsommation(cm2);
+
+    assertEquals("La consommationMensuelle ne correspond pas",
+        Math.toIntExact((2640 * 12 * 1200 / 1)+(**2/1)) + "",
+        Math.toIntExact((long) cm1.calculerConsommation()) + "");
+
+  }
 
 }
