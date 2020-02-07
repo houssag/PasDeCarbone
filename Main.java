@@ -392,23 +392,34 @@ public class Main {
     ConsommationMensuelle cm2 = new ConsommationMensuelle(u2, new Date(2020121));
     cm2.ajouterUneUtilisation(u4);
 
-    ConsommationMensuelle cm3 = new ConsommationMensuelle(u1, new Date(2020121));
+    ConsommationMensuelle cm3 = new ConsommationMensuelle(u1, new Date(2020101));
     cm3.ajouterUneUtilisation(u2);
 
-    ConsommationMensuelle cm4 = new ConsommationMensuelle(u2, new Date(2020121));
+    ConsommationMensuelle cm4 = new ConsommationMensuelle(u2, new Date(2020101));
     cm4.ajouterUneUtilisation(u1);
 
     Profil pr1 = new Profil(p1);
     Consommation c1 = new Consommation(pr1);
     c1.ajouterConsommation(cm1);
+    c1.ajouterConsommation(cm3);
 
     Profil pr2 = new Profil(p2);
     Consommation c2 = new Consommation(pr2);
     c2.ajouterConsommation(cm2);
+    c2.ajouterConsommation(cm4);
 
     assertEquals("La consommationMensuelle ne correspond pas",
-        Math.toIntExact((2640 * 12 * 1200 / 1)+(**2/1)) + "",
-        Math.toIntExact((long) cm1.calculerConsommation()) + "");
+        ((2640 * 12 * 1200 / 1)+(1.9*12/1)) + "",
+        cm1.calculerConsommation() + "");
+    assertEquals("La consommationMensuelle ne correspond pas",
+            ((360 * 172 * 12 * 2 / 1)+(15*13*1/1)) + "",
+            cm2.calculerConsommation() + "");
+    assertEquals("La consommationMensuelle ne correspond pas",
+            ((2640 * 12 * 1200 / 1)+(360 * 172 *12 *2 / 1)) + "",
+            cm3.calculerConsommation() + "");
+    assertEquals("La consommationMensuelle ne correspond pas",
+            ((360 * 172 *12 *2 / 1)+(2640 * 12 * 1200 /1)) + "",
+            cm4.calculerConsommation() + "");
 
   }
 
