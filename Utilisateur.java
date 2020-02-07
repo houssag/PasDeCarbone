@@ -43,6 +43,10 @@ public abstract class Utilisateur {
         this.adresse = ad;
       }
     }
+    
+    else {
+      System.out.println("Pseudo/mot de passe/mail incorrect.");
+    }
 
   }
 
