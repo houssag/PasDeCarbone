@@ -185,7 +185,7 @@ public abstract class Utilisateur {
   public boolean estInvalide(String s) {
     boolean ok = false;
     for (int i = 0; i < s.length(); i++) {
-      if (Character.isLetter(s.charAt(i)) == false || s.charAt(i) != '-' || s.charAt(i) != '\'') {
+      if (Character.isLetter(s.charAt(i)) == false && s.charAt(i) != '-' && s.charAt(i) != '\'') {
         ok = true;
       }
     }

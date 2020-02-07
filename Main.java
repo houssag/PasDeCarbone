@@ -16,6 +16,20 @@ public class Main {
     assertEquals("Erreur prénom ne correspond pas", "Michel", p1.getPrenom());
     assertEquals("Erreur nom ne correspond pas", "Lenoir", p2.getNom());
     assertEquals("Erreur prénom ne correspond pas", "Roger", p2.getPrenom());
+
+    Particulier p3 = new Particulier("", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
+
+    assertEquals("Erreur pseudo ne correspond pas", null, p3.getPseudo());
+    
+    p3.setPseudo("LePseudo");
+    
+    assertEquals("Erreur pseudo ne correspond pas", "LePseudo", p3.getPseudo());
+    
+    Particulier p4 = new Particulier("PseudoP4", "mdp2", "Roger23", "Lenoir", "", "Roger@mail.fr");
+    
+    assertEquals("Erreur prenom ne correspond pas", null, p4.getPrenom());
+
+
   }
 
   /** Création Utilisateur. **/
@@ -239,7 +253,7 @@ public class Main {
     Profil pr1 = new Profil(p1);
     Voiture v2 = new Voiture("Twingo", Voiture.TypeCarburant.Diesel, 12);
     pr1.ajouterEquipement(v2);
-    
+
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     assertEquals("L'équipement n'a pas été supprimé", false, pr1.supprimerEquipement(v1));
     pr1.ajouterEquipement(v1);
