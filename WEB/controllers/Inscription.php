@@ -35,6 +35,7 @@ class Inscription extends CI_Controller {
 		if($isIn == 1 || $_POST['mdpUtilisateurConfirmation'] != $_POST['mdpUtilisateur'] ){
 			   redirect( base_url() . 'index.php/inscription/index', 'refresh');
 		}else{
+			$_POST[mdpUtilisateur] = md5($_POST[mdpUtilisateur]);
 			$this->db_model->insert_aUser($_POST);
 			redirect( base_url());
 		}

@@ -17,4 +17,11 @@ class Db_model extends CI_Model {
            $result = $this->db->query($sql,array($POST['pseudoUtilisateur'], $POST['mailUtilisateur'],$POST['mdpUtilisateur'],$POST['nomUtilisateur'], $POST['prenomUtilisateur'], $POST['adresseUtilisateur'],1));
            return $result;
 		}
+
+		public function connexion($POST){
+			$sql = "SELECT * FROM utilisateur WHERE mailUtilisateur= ? AND mdpUtilisateur  = ?";
+			$result =  $this->db->query($sql, array($POST['adresseMail'],$POST['mdpUtilisateur']));
+			if($result->num_rows() > 0) return true;
+			else return false;
+		}
 }
