@@ -31,34 +31,6 @@ public class Main {
 
   }
   
-  @SuppressWarnings("deprecation")
-@Test
-  public void creationEquipement() {
-	  
-	  Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("Le nom de l'�quipement n'est pas bon", "Porsche", v1.getNom());
-	  
-	  Voiture v2 = new Voiture("", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("Le nom de l'�quipement n'est pas bon", "defaultName", v2.getNom());
-
-	  Voiture v3= new Voiture("m@m�", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("Le nom de l'�quipement n'est pas bon", "defaultName", v3.getNom());
-	  
-
-	  Voiture v5 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("La valeure du litre par km n'est pas bon", 12.0 + "", v5.getLitresParKm() +"");
-	  
-	  
-	  Voiture v4 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, -15);
-	  assertEquals("La valeure du litre par km n'est pas bon", 0.0 + "", v4.getLitresParKm() +"");
-	  
-	  Avion a1 = new Avion("A970", true, -15);
-	  assertEquals("La distance n'est pas bonne", 0 + "", a1.getDistance() +"");
-	  
-	  Avion a2 = new Avion("A970", true, 15);
-	  assertEquals("La distance n'est pas bonne", 15 + "", a2.getDistance() +"");
-
-  }
 
   /** Création Utilisateur. **/
   @Test
@@ -123,7 +95,36 @@ public class Main {
     assertEquals("Erreur Liste ne correspond pas", true, l1.utilisateurExiste(p1));
   }
 
+  @SuppressWarnings("deprecation")
+@Test
+  public void creationEquipement() {
+	  
+	  Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
+	  assertEquals("Le nom de l'�quipement n'est pas bon", "Porsche", v1.getNom());
+	  
+	  Voiture v2 = new Voiture("", Voiture.TypeCarburant.Diesel, 12);
+	  assertEquals("Le nom de l'�quipement n'est pas bon", "defaultName", v2.getNom());
 
+	  Voiture v3= new Voiture("m@m�", Voiture.TypeCarburant.Diesel, 12);
+	  assertEquals("Le nom de l'�quipement n'est pas bon", "defaultName", v3.getNom());
+	  
+
+	  Voiture v5 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
+	  assertEquals("La valeure du litre par km n'est pas bon", 12.0 + "", v5.getLitresParKm() +"");
+	  
+	  
+	  Voiture v4 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, -15);
+	  assertEquals("La valeure du litre par km n'est pas bon", 0.0 + "", v4.getLitresParKm() +"");
+	  
+	  Avion a1 = new Avion("A970", true, -15);
+	  assertEquals("La distance n'est pas bonne", 0 + "", a1.getDistance() +"");
+	  
+	  Avion a2 = new Avion("A970", true, 15);
+	  assertEquals("La distance n'est pas bonne", 15 + "", a2.getDistance() +"");
+
+  }
+
+  
   /** Création Train. **/
   @Test
   public void creerTrain() {
