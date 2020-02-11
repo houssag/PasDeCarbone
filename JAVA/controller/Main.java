@@ -1,4 +1,8 @@
+package controller;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.sql.Date;
 import org.junit.Test;
 
@@ -9,28 +13,37 @@ public class Main {
   /** Création de particulier. **/
   @Test
   public void creationUtilisateur() {
+    // Important
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
     Particulier p2 = new Particulier("Diego", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
+
 
     assertEquals("Erreur nom ne correspond pas", "Leblanc", p1.getNom());
     assertEquals("Erreur prénom ne correspond pas", "Michel", p1.getPrenom());
     assertEquals("Erreur nom ne correspond pas", "Lenoir", p2.getNom());
     assertEquals("Erreur prénom ne correspond pas", "Roger", p2.getPrenom());
 
-    Particulier p3 = new Particulier("", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
 
-    assertEquals("Erreur pseudo ne correspond pas", null, p3.getPseudo());
-    
-    p3.setPseudo("LePseudo");
-    
-    assertEquals("Erreur pseudo ne correspond pas", "LePseudo", p3.getPseudo());
-    
-    Particulier p4 = new Particulier("PseudoP4", "mdp2", "Roger23", "Lenoir", "", "Roger@mail.fr");
-    
-    assertEquals("Erreur prenom ne correspond pas", null, p4.getPrenom());
+    Particulier p3 = null;
+    try {
+      p3 = new Particulier("", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
+      fail("le particulier ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (p3 == null);
+    }
+
+
+    // Important
+    Particulier p4 = null;
+    try {
+      p4 = new Particulier("PseudoP4", null, null, null, null, null);
+      fail("le particulier ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (p4 == null);
+    }
 
   }
-  
+
 
   /** Création Utilisateur. **/
   @Test
@@ -40,6 +53,16 @@ public class Main {
     assertEquals("Erreur nom ne correspond pas", true, p1.estInvalide("123456"));
     assertEquals("Erreur nom ne correspond pas", false, p1.estInvalide("test"));
     assertEquals("Erreur nom ne correspond pas", true, p1.estInvalide("te123st"));
+
+    // Important
+    Particulier p2 = null;
+    try {
+      p2 = new Particulier("Do&$Martin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
+      fail("le particulier ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (p2 == null);
+    }
+
     assertEquals("Erreur le nom contient des caractères spéciaux et n'est pas détécté", true,
         p1.estInvalide("t€e@st"));
   }
@@ -53,9 +76,6 @@ public class Main {
     ListeUtilisateur l1 = new ListeUtilisateur();
     l1.ajouterUtilisateur(p1);
     l1.ajouterUtilisateur(p2);
-    assertEquals("Erreur Liste ne correspond pas", "[DonMartin][Diego]", l1.toStringListA());
-    Particulier p3 = new Particulier("Diego", "mdp2", "Roger2", "Lenoi2r", "", "Roger@mail.fr");
-    l1.ajouterUtilisateur(p3);
     assertEquals("Erreur Liste ne correspond pas", "[DonMartin][Diego]", l1.toStringListA());
 
 
@@ -89,42 +109,52 @@ public class Main {
     assertEquals("Erreur Liste ne correspond pas", false, l1.utilisateurExiste(p1));
     l1.ajouterUtilisateur(p1);
     assertEquals("Erreur Liste ne correspond pas", true, l1.utilisateurExiste(p1));
-    Particulier p2 =
-        new Particulier("Do1nMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
-    l1.ajouterUtilisateur(p2);
-    assertEquals("Erreur Liste ne correspond pas", true, l1.utilisateurExiste(p1));
   }
 
   @SuppressWarnings("deprecation")
-@Test
+  @Test
   public void creationEquipement() {
-	  
-	  Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("Le nom de l'�quipement n'est pas bon", "Porsche", v1.getNom());
-	  
-	  Voiture v2 = new Voiture("", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("Le nom de l'�quipement n'est pas bon", "defaultName", v2.getNom());
 
-	  Voiture v3= new Voiture("m@m�", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("Le nom de l'�quipement n'est pas bon", "defaultName", v3.getNom());
-	  
+    // Important
+    Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
+    assertEquals("Le nom de l'équipement n'est pas bon", "Porsche", v1.getNom());
 
-	  Voiture v5 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-	  assertEquals("La valeure du litre par km n'est pas bon", 12.0 + "", v5.getLitresParKm() +"");
-	  
-	  
-	  Voiture v4 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, -15);
-	  assertEquals("La valeure du litre par km n'est pas bon", 0.0 + "", v4.getLitresParKm() +"");
-	  
-	  Avion a1 = new Avion("A970", true, -15);
-	  assertEquals("La distance n'est pas bonne", 0 + "", a1.getDistance() +"");
-	  
-	  Avion a2 = new Avion("A970", true, 15);
-	  assertEquals("La distance n'est pas bonne", 15 + "", a2.getDistance() +"");
+    Voiture v2 = null;
+    try {
+      v2 = new Voiture("", Voiture.TypeCarburant.Diesel, 12);
+      fail("la voiture ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (v2 == null);
+    }
+    Voiture v3 = null;
+    try {
+      v3 = new Voiture("P€éééé\"0r€2h€", Voiture.TypeCarburant.Diesel, 12);
+      fail("la voiture ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (v3 == null);
+    }
+
+    Voiture v44 = new Voiture("Péééér2h", Voiture.TypeCarburant.Diesel, 12);
+    assertEquals("Le nom de l'équipement n'est pas bon", "Péééér2h", v44.getNom());
+
+
+
+    Voiture v5 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
+    assertEquals("La valeure du litre par km n'est pas bon", 12.0 + "", v5.getLitresParKm() + "");
+
+
+    Voiture v4 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, -15);
+    assertEquals("La valeure du litre par km n'est pas bon", 0.0 + "", v4.getLitresParKm() + "");
+
+    Avion a1 = new Avion("A970", true, -15);
+    assertEquals("La distance n'est pas bonne", 0 + "", a1.getDistance() + "");
+
+    Avion a2 = new Avion("A970", true, 15);
+    assertEquals("La distance n'est pas bonne", 15 + "", a2.getDistance() + "");
 
   }
 
-  
+
   /** Création Train. **/
   @Test
   public void creerTrain() {
@@ -395,7 +425,7 @@ public class Main {
 
   }
 
-    /** Scenario type d'utilisation. **/
+  /** Scenario type d'utilisation. **/
   @Test
   public void testScenario() {
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
@@ -438,17 +468,13 @@ public class Main {
     c2.ajouterConsommation(cm4);
 
     assertEquals("La consommationMensuelle ne correspond pas",
-        ((2640 * 12 * 1200 / 1)+(1.9*12/1)) + "",
-        cm1.calculerConsommation() + "");
+        ((2640 * 12 * 1200 / 1) + (1.9 * 12 / 1)) + "", cm1.calculerConsommation() + "");
     assertEquals("La consommationMensuelle ne correspond pas",
-            ((360 * 172 * 12 * 2 / 1)+(15*13*1/1)) + "",
-            cm2.calculerConsommation() + "");
+        ((360 * 172 * 12 * 2 / 1) + (15 * 13 * 1 / 1)) + "", cm2.calculerConsommation() + "");
     assertEquals("La consommationMensuelle ne correspond pas",
-            ((2640 * 12 * 1200 / 1)+(360 * 172 *12 *2 / 1)) + "",
-            cm3.calculerConsommation() + "");
+        ((2640 * 12 * 1200 / 1) + (360 * 172 * 12 * 2 / 1)) + "", cm3.calculerConsommation() + "");
     assertEquals("La consommationMensuelle ne correspond pas",
-            ((360 * 172 *12 *2 / 1)+(2640 * 12 * 1200 /1)) + "",
-            cm4.calculerConsommation() + "");
+        ((360 * 172 * 12 * 2 / 1) + (2640 * 12 * 1200 / 1)) + "", cm4.calculerConsommation() + "");
 
   }
 

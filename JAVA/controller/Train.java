@@ -1,3 +1,5 @@
+package controller;
+
 
 public class Train extends Equipement {
 

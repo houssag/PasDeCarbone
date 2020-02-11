@@ -1,3 +1,5 @@
+package controller;
+
 public abstract class Utilisateur {
   private String pseudo;
   private String mdp;
@@ -20,32 +22,44 @@ public abstract class Utilisateur {
   Utilisateur(String p, String m, String pre, String n, String ad, String ma) {
 
     // On intialise le pseudo et le mot de passe si ils ne sont pas vides
-    if (p.isEmpty() != true && m.isEmpty() != true && ma.isEmpty() != true) {
-
-      this.pseudo = p;
+    if (p != null && m != null && ma != null && p.isEmpty() != true && m.isEmpty() != true
+        && ma.isEmpty() != true) {
       this.mdp = m;
       this.mail = ma;
+      
+      if (!estInvalide(pre) && !estInvalide(n) && !estInvalide(ad) && !estInvalide(p)) {
+        
 
-      if (pre.isEmpty() != true) {
-        // On initialise le prénom si il n'est pas vide et si il ne contient pas de chiffre
-        if (estInvalide(pre) == false) {
-          this.prenom = pre;
+        if (pre.isEmpty() != true) {
+          // On initialise le prénom si il n'est pas vide et si il ne contient pas de chiffre
+          if (estInvalide(p) == false) {
+            this.pseudo = p;
+          }
         }
-      }
-      // On initialise le nom si il n'est pas vide et si il ne contient pas de chiffre
-      if (n.isEmpty() != true) {
-        if (estInvalide(n) == false) {
-          this.nom = n;
+
+
+
+        if (pre.isEmpty() != true) {
+          // On initialise le prénom si il n'est pas vide et si il ne contient pas de chiffre
+          if (estInvalide(pre) == false) {
+            this.prenom = pre;
+          }
         }
+        // On initialise le nom si il n'est pas vide et si il ne contient pas de chiffre
+        if (n.isEmpty() != true) {
+          if (estInvalide(n) == false) {
+            this.nom = n;
+          }
+        }
+        // On intialise l'adresse si elle n'est pas vide (elle peut contenir des chiffres)
+        if (ad.isEmpty() != true) {
+          this.adresse = ad;
+        }
+      } else {
+        throw new IllegalArgumentException();
       }
-      // On intialise l'adresse si elle n'est pas vide (elle peut contenir des chiffres)
-      if (ad.isEmpty() != true) {
-        this.adresse = ad;
-      }
-    }
-    
-    else {
-      System.out.println("Pseudo/mot de passe/mail incorrect.");
+    } else {
+      throw new IllegalArgumentException();
     }
 
   }
@@ -175,8 +189,8 @@ public abstract class Utilisateur {
   }
 
   /**
-   * Permet de savoir si une chaîne passée en paramètre ne contient que des caractères
-   * contenus dans un prénom.
+   * Permet de savoir si une chaîne passée en paramètre ne contient que des caractères contenus dans
+   * un prénom.
    * 
    * @param s La chaîne de caractère que l'on veut analyser
    * @return un booléen, vrai si la chaîne ne correspond pas aux exigences, faux sinon
@@ -191,5 +205,5 @@ public abstract class Utilisateur {
     }
     return ok;
   }
- 
+
 }

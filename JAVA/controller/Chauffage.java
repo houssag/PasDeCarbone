@@ -1,3 +1,5 @@
+package controller;
+
 
 public class Chauffage extends Equipement {
   public enum TypeChauffage {

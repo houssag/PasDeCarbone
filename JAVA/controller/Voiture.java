@@ -1,3 +1,6 @@
+package controller;
+
+
 public class Voiture extends Equipement {
   static int[] consoVoiture = {2640,2392,1665,1819};
 

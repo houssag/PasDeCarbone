@@ -1,25 +1,35 @@
+package controller;
 
-abstract class Equipement {
+import java.text.Normalizer;
+import java.util.regex.Pattern;
+
+public abstract class Equipement {
   private String nom;
-  
+
   /**
    * Constructeur de l'équipement.
+   * 
    * @param n le nom de l'équipement
    */
   Equipement(String n) {
-	  
-    if(estInvalide(n) || n.length() <= 0) nom = "defaultName";
-    else nom = n;
+
+    if (!estValide(n) || n.length() <= 0) {
+      throw new IllegalArgumentException();
+    } else {
+      nom = n;
+    }
   }
 
   /**
    * Renvoie le taux calculé en fonction du carburant et de la consommation en litres pas km.
+   * 
    * @return Le taux d'émission CO2 de la voiture
    */
   abstract float calculerTaux();
-  
+
   /**
    * Renvoie le nom de l'équipement.
+   * 
    * @return le nom de l'équipement
    */
   public String getNom() {
@@ -28,19 +38,20 @@ abstract class Equipement {
 
   /**
    * Modifie le nom de l'équipement.
+   * 
    * @param nom nouveau nom de l'équipement
    */
   public void setNom(String nom) {
-	  if(!estInvalide(nom)) this.nom = nom;
+    if (estValide(nom)) {
+      this.nom = nom;
+    }
   }
-  
-  public boolean estInvalide(String s) {
-	    for (int i = 0; i < s.length(); i++) {
-	      if (Character.isLetter(s.charAt(i)) == false && Integer.getInteger(String.valueOf(s.charAt(i))) == null) {
-	        return true;
-	      }
-	    }
-	    return false;
-	  }
+
+  public boolean estValide(String s) {
+    s = Normalizer.normalize(s, Normalizer.Form.NFD);
+    s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+    String s2 = s.replaceAll("[^a-zA-Z0-9]", "");
+    return s.equals(s2);
+  }
 
 }

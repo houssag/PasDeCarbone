@@ -65,7 +65,9 @@ public class BaseDeDonnee {
 
     Statement statement = laBaseDeDonnee.createStatement();
     ResultSet resultat = statement.executeQuery(
-        "SELECT *  FROM Equipement INNER JOIN CATEGORIE ON Equipement.Categorie_idCategorie = CATEGORIE.idCategorie INNER JOIN TAUX ON Equipement.taux_idTaux = TAUX.idTaux INNERJOIN EQUIPEMENT.VALEUR_idTaux = idTaux;");
+        "SELECT *  FROM Equipement INNER JOIN CAT" + "EGORIE ON Equipement.Categorie_idCategorie ="
+            + " CATEGORIE.idCategorie INNER JOIN TAUX ON Equipeme" + "nt.taux_idTaux = TAUX.idT"
+            + "aux INNERJOIN EQUIPEMENT.VALEUR_idTaux = idTaux;");
 
     while (resultat.next()) {
       int idEquipement = resultat.getInt("idEquipement");
