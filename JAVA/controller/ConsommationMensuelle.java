@@ -18,9 +18,19 @@ public class ConsommationMensuelle {
    * 
    */
   ConsommationMensuelle(Utilisation uneUtilisation, Date mois) {
-    this.listeUtilisation = new ArrayList<Utilisation>();
-    this.listeUtilisation.add(uneUtilisation);
-    this.mois = mois;
+    if (uneUtilisation == null) {
+      throw new IllegalArgumentException("L'utilisation ne peut pas être null");
+    } else {
+      this.listeUtilisation = new ArrayList<Utilisation>();
+      this.listeUtilisation.add(uneUtilisation);
+    }
+    if (mois == null || mois.compareTo(new Date(System.currentTimeMillis())) > 0) {
+      throw new IllegalArgumentException(
+          "La date en paramètre est après la date présente ou ne peut pas être null");
+    } else {
+      this.mois = mois;
+    }
+
   }
 
   /**
@@ -31,10 +41,10 @@ public class ConsommationMensuelle {
    */
   float calculerConsommation() {
     float taux = 0;
+    System.out.println("\n");
     for (int i = 0; i < this.listeUtilisation.size() - 1; i++) {
-      taux = taux + (this.listeUtilisation.get(i).getUnEquipement().calculerTaux()
-          * this.listeUtilisation.get(i).getQuantite())
-          / this.listeUtilisation.get(i).getNbPersonne();
+     System.out.print((float )this.listeUtilisation.get(i).getUnEquipement().calculerTaux() +" * " + (float) this.listeUtilisation.get(i).getQuantite() + " / " + (float) this.listeUtilisation.get(i).getNbPersonne()  + " + ");
+      taux = taux +   ((float) this.listeUtilisation.get(i).getUnEquipement().calculerTaux()    * (float) this.listeUtilisation.get(i).getQuantite())        / (float) this.listeUtilisation.get(i).getNbPersonne();
     }
     return taux;
   }

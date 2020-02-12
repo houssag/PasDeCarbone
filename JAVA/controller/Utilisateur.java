@@ -26,9 +26,9 @@ public abstract class Utilisateur {
         && ma.isEmpty() != true) {
       this.mdp = m;
       this.mail = ma;
-      
+
       if (!estInvalide(pre) && !estInvalide(n) && !estInvalide(ad) && !estInvalide(p)) {
-        
+
 
         if (pre.isEmpty() != true) {
           // On initialise le prénom si il n'est pas vide et si il ne contient pas de chiffre
@@ -56,10 +56,11 @@ public abstract class Utilisateur {
           this.adresse = ad;
         }
       } else {
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(
+            "L'un des arguments contient un charactère non autorisé");
       }
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("l'un des arguments ne devrait pas être null");
     }
 
   }

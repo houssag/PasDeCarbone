@@ -9,7 +9,11 @@ public class Consommation {
   public Profil profil;
 
   public Consommation(Profil p) {
-    this.profil = p;
+    if (p == null) {
+      throw new IllegalArgumentException("le profil ne peut pas être null");
+    } else {
+      this.profil = p;
+    }
     listeConsommation = new ArrayList<ConsommationMensuelle>();
   }
 

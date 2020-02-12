@@ -19,7 +19,7 @@ public class Avion extends Equipement {
     if (d >= 0) {
       distance = d;
     } else {
-      distance = 0;
+      throw new IllegalArgumentException("La distance ne peut pas êtr négative");
     }
   }
 

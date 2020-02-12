@@ -10,21 +10,26 @@ public class Train extends Equipement {
   public enum TypeTrain {
     TGV_Inoui, TGV_Lyria, OUIGO, Intercites, Eurostar, Thalys, Gala, Alleo, Transilien, RER, TER
   }
-  //Différents types de trains, ordonnées de façon à correspondre
-  //à leurs consommations respectives dans le tableau des consommations.
+  // Différents types de trains, ordonnées de façon à correspondre
+  // à leurs consommations respectives dans le tableau des consommations.
 
   private TypeTrain type;
-  //Le type du train
-  
+  // Le type du train
+
   /**
    * Constructeur de l'objet Train.
+   * 
    * @param n Nom du train
    * @param tt Type du train
    */
 
   Train(String n, TypeTrain tt) {
     super(n);
-    type = tt;
+    if (tt != null) {
+      type = tt;
+    } else {
+      throw new IllegalArgumentException();
+    }
   }
 
   /**
@@ -39,6 +44,7 @@ public class Train extends Equipement {
 
   /**
    * Cette fonction sert à obtenir la consommation moyenne par kilomètre d'un type de train donné.
+   * 
    * @param t le type de train dont on doit connaître la consommation
    * @return La consommation moyenne par kilomètre d'un train en fonction de son type
    */
@@ -48,6 +54,7 @@ public class Train extends Equipement {
 
   /**
    * Cette fonction sert à modifier les variables de taux d'émission de CO2 d'un type de train.
+   * 
    * @param t le type de train dont on doit modifier la consommation moyenne de CO2 par km
    * @param consoTrain la nouvelle consommation moyenne de CO2 par km d'un train
    */
@@ -57,6 +64,7 @@ public class Train extends Equipement {
 
   /**
    * Renvoie le type du train.
+   * 
    * @return le type du train
    */
   public TypeTrain getType() {
@@ -65,6 +73,7 @@ public class Train extends Equipement {
 
   /**
    * Modifie le type du train.
+   * 
    * @param type le nouveau type du train
    */
   public void setType(TypeTrain type) {

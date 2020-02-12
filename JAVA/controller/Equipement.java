@@ -1,7 +1,6 @@
 package controller;
 
 import java.text.Normalizer;
-import java.util.regex.Pattern;
 
 public abstract class Equipement {
   private String nom;
@@ -11,10 +10,10 @@ public abstract class Equipement {
    * 
    * @param n le nom de l'équipement
    */
+  @SuppressWarnings("null")
   Equipement(String n) {
-
-    if (!estValide(n) || n.length() <= 0) {
-      throw new IllegalArgumentException();
+    if (n == null || !estValide(n) || n.length() <= 0) {
+      throw new IllegalArgumentException("Le nom est trop cours ou vide");
     } else {
       nom = n;
     }

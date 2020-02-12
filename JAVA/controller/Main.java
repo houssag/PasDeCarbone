@@ -2,8 +2,9 @@ package controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.math.RoundingMode;
 import java.sql.Date;
+import java.text.DecimalFormat;
 import org.junit.Test;
 
 
@@ -71,12 +72,18 @@ public class Main {
 
   @Test
   public void creationListeUtilisateur() {
+    // Important
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
     Particulier p2 = new Particulier("Diego", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
     ListeUtilisateur l1 = new ListeUtilisateur();
     l1.ajouterUtilisateur(p1);
     l1.ajouterUtilisateur(p2);
     assertEquals("Erreur Liste ne correspond pas", "[DonMartin][Diego]", l1.toStringListA());
+
+    // Important
+    l1.ajouterUtilisateur(p2);
+    assertEquals("Erreur Liste ne correspond pas", "[DonMartin][Diego]", l1.toStringListA());
+
 
 
   }
@@ -111,7 +118,6 @@ public class Main {
     assertEquals("Erreur Liste ne correspond pas", true, l1.utilisateurExiste(p1));
   }
 
-  @SuppressWarnings("deprecation")
   @Test
   public void creationEquipement() {
 
@@ -143,12 +149,21 @@ public class Main {
     assertEquals("La valeure du litre par km n'est pas bon", 12.0 + "", v5.getLitresParKm() + "");
 
 
-    Voiture v4 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, -15);
-    assertEquals("La valeure du litre par km n'est pas bon", 0.0 + "", v4.getLitresParKm() + "");
+    Voiture v4 = null;
+    try {
+      v4 = new Voiture("P€éééé\"0r€2h€", Voiture.TypeCarburant.Diesel, -15);
+      fail("la voiture ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (v4 == null);
+    }
 
-    Avion a1 = new Avion("A970", true, -15);
-    assertEquals("La distance n'est pas bonne", 0 + "", a1.getDistance() + "");
-
+    Avion a1 = null;
+    try {
+      a1 = new Avion("A970", true, -70);
+      fail("l'avion ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (a1 == null);
+    }
     Avion a2 = new Avion("A970", true, 15);
     assertEquals("La distance n'est pas bonne", 15 + "", a2.getDistance() + "");
 
@@ -187,8 +202,7 @@ public class Main {
 
   @Test
   public void recupererEmissionAvion() {
-    Avion a1 = new Avion("avion", true, 360);
-    assertEquals("Erreur l'emission ne correspond pas", 172.0 + "", a1.getEmissionParKm() + "");
+    assertEquals("Erreur l'emission ne correspond pas", 172.0 + "", Avion.getEmissionParKm() + "");
 
   }
 
@@ -196,9 +210,9 @@ public class Main {
   public void definitEmissionAvion() {
     Avion a1 = new Avion("avion", true, 360);
     a1.setEmissionParKm(173.00f);
-    assertEquals("Erreur l'emission ne correspond pas", 173.0 + "", a1.getEmissionParKm() + "");
+    assertEquals("Erreur l'emission ne correspond pas", 173.0 + "", Avion.getEmissionParKm() + "");
     a1.setEmissionParKm(172.0f);
-    assertEquals("Erreur l'emission ne correspond pas", 172.0 + "", a1.getEmissionParKm() + "");
+    assertEquals("Erreur l'emission ne correspond pas", 172.0 + "", Avion.getEmissionParKm() + "");
   }
 
 
@@ -216,7 +230,7 @@ public class Main {
   public void emissionCarburantVoiture() {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     assertEquals("Erreur l'émission ne correspond pas", 2640,
-        v1.getEmissionCarburant(v1.getCarburant()));
+        Voiture.getEmissionCarburant(v1.getCarburant()));
   }
 
   @Test
@@ -228,12 +242,12 @@ public class Main {
   @Test
   public void setEmissionCarburant() {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-    v1.setEmissionCarburant(v1.getCarburant(), 2540);
+    Voiture.setEmissionCarburant(v1.getCarburant(), 2540);
     assertEquals("Erreur l'émission ne correspond pas", 2540,
-        v1.getEmissionCarburant(v1.getCarburant()));
-    v1.setEmissionCarburant(v1.getCarburant(), 2640);
+        Voiture.getEmissionCarburant(v1.getCarburant()));
+    Voiture.setEmissionCarburant(v1.getCarburant(), 2640);
     assertEquals("Erreur l'émission ne correspond pas", 2640,
-        v1.getEmissionCarburant(v1.getCarburant()));
+        Voiture.getEmissionCarburant(v1.getCarburant()));
   }
 
 
@@ -324,18 +338,38 @@ public class Main {
 
   @Test
   public void creerUtilisation() {
+    // Important
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-    Utilisation u1 = new Utilisation(360, v1);
+    Utilisation u1 = new Utilisation(8, v1);
     assertEquals("L'équipement ne correspond pas", v1, u1.getUnEquipement());
     assertEquals("L'équipement ne correspond pas", 1, u1.getNbPersonne());
-    Utilisation u2 = new Utilisation(360, v1, 2);
-    assertEquals("L'équipement ne correspond pas", 2, u2.getNbPersonne());
+    assertEquals("Le nombre d'utilisation ne correspond pas", 8, u1.getQuantite());
+
+    // Important
+    Utilisation u2 = null;
+    try {
+      u2 = new Utilisation(-8, v1, 2);
+      fail("l'utilisation ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (u2 == null);
+    }
   }
 
 
   /** Creation Consommation Mensuelle. **/
   @Test
   public void ajouterConsommationMensuelle() {
+    // Important
+    Utilisation u2 = null;
+    try {
+      u2 = new Utilisation(8, null);
+      fail("l'utilisation ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (u2 == null);
+    }
+
+
+
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
     Profil pr1 = new Profil(p1);
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
@@ -381,12 +415,25 @@ public class Main {
 
 
   /** Creation Consommation. **/
+  @SuppressWarnings("deprecation")
   @Test
   public void ajouterConsommation() {
-    Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
-    Profil pr1 = new Profil(p1);
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     Utilisation u1 = new Utilisation(360, v1);
+
+    ConsommationMensuelle m2 = null;
+    try {
+      Date d1 = new Date(System.currentTimeMillis());
+      d1.setYear(d1.getYear() + 300);
+      m2 = new ConsommationMensuelle(u1, d1);
+      fail("la consommation ne devrait pas pouvoir être créee");
+    } catch (Exception e) {
+      assert (m2 == null);
+    }
+
+
+    Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
+    Profil pr1 = new Profil(p1);
     pr1.ajouterEquipement(v1);
 
     Consommation c1 = new Consommation(pr1);
@@ -428,6 +475,7 @@ public class Main {
   /** Scenario type d'utilisation. **/
   @Test
   public void testScenario() {
+    // Important
     Particulier p1 = new Particulier("DonMartin", "mdp", "Michel", "Leblanc", "", "michel@mail.fr");
     Particulier p2 = new Particulier("Diego", "mdp2", "Roger", "Lenoir", "", "Roger@mail.fr");
 
@@ -466,15 +514,23 @@ public class Main {
     Consommation c2 = new Consommation(pr2);
     c2.ajouterConsommation(cm2);
     c2.ajouterConsommation(cm4);
+    DecimalFormat df = new DecimalFormat("#.#");
+    df.setRoundingMode(RoundingMode.DOWN);
 
     assertEquals("La consommationMensuelle ne correspond pas",
-        ((2640 * 12 * 1200 / 1) + (1.9 * 12 / 1)) + "", cm1.calculerConsommation() + "");
+        (((2640 * 12 * 1200 / 1) + (1.9 * 12 / 1)) + "").substring(0, 5),
+        (cm1.calculerConsommation() + "").substring(0, 5));
+    
+
     assertEquals("La consommationMensuelle ne correspond pas",
-        ((360 * 172 * 12 * 2 / 1) + (15 * 13 * 1 / 1)) + "", cm2.calculerConsommation() + "");
+        (((360 * 172 * 12 * 2 / 1) + (15 * 13 * 1 / 1)) + "").substring(0, 4),
+        (cm2.calculerConsommation() + "").substring(0, 4));
     assertEquals("La consommationMensuelle ne correspond pas",
-        ((2640 * 12 * 1200 / 1) + (360 * 172 * 12 * 2 / 1)) + "", cm3.calculerConsommation() + "");
+        (((2640 * 12 * 1200 / 1) + (360 * 172 * 12 * 2 / 1)) + "").substring(0, 8),
+        (cm3.calculerConsommation() + "").substring(0, 8));
     assertEquals("La consommationMensuelle ne correspond pas",
-        ((360 * 172 * 12 * 2 / 1) + (2640 * 12 * 1200 / 1)) + "", cm4.calculerConsommation() + "");
+        (((360 * 172 * 12 * 2 / 1) + (2640 * 12 * 1200 / 1)) + "").substring(0, 8),
+        (cm4.calculerConsommation() + "").substring(0, 8));
 
   }
 

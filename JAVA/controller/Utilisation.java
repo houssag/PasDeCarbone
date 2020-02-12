@@ -15,9 +15,33 @@ public class Utilisation {
    * @param unEquipement désigne l'équipement utilisé
    */
   public Utilisation(int quantite, Equipement unEquipement) {
-    this.quantite = quantite;
-    this.unEquipement = unEquipement;
-    this.nbPersonne = 1;
+    this(quantite, unEquipement, 1);
+  }
+
+  /**
+   * Creer une utilisation pour une utilisation par un nombre de personnes pendant une quantité et
+   * concernant un équipement.
+   * 
+   * @param quantite désigne la quantité de l'équipement utilisé
+   * @param unEquipement désigne l'équipement utilisé
+   * @param nbPersonne désigne le nombre de personne utilisant l'équipement
+   */
+  public Utilisation(int quantite, Equipement unEquipement, int nbPersonne) {
+    if (quantite < 0) {
+      throw new IllegalArgumentException();
+    } else {
+      this.quantite = quantite;
+    }
+    if (unEquipement == null) {
+      throw new IllegalArgumentException();
+    } else {
+      this.unEquipement = unEquipement;
+    }
+    if (nbPersonne < 0) {
+      throw new IllegalArgumentException();
+    } else {
+      this.nbPersonne = nbPersonne;
+    }
   }
 
   /**
@@ -56,19 +80,6 @@ public class Utilisation {
     this.nbPersonne = nbPersonne;
   }
 
-  /**
-   * Creer une utilisation pour une utilisation par un nombre de personnes pendant une quantité et
-   * concernant un équipement.
-   * 
-   * @param quantite désigne la quantité de l'équipement utilisé
-   * @param unEquipement désigne l'équipement utilisé
-   * @param nbPersonne désigne le nombre de personne utilisant l'équipement
-   */
-  public Utilisation(int quantite, Equipement unEquipement, int nbPersonne) {
-    this.quantite = quantite;
-    this.unEquipement = unEquipement;
-    this.nbPersonne = nbPersonne;
-  }
 
   /**
    * Permet de récupérer la quantite qui est une distance/surface d'un équipement.

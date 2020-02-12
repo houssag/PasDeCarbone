@@ -42,9 +42,12 @@ public class Chauffage extends Equipement {
    */
   Chauffage(String n, TypeChauffage t, int k) {
     super(n);
-    if (k > 0) {
+    if (k > 0 && t != null) {
       type = t;
       kwh = k;
+    } else {
+      throw new IllegalArgumentException(
+          "Le Kwh ne peut pas être négatif et typeChauffage ne peut pas être null");
     }
   }
 
@@ -116,22 +119,24 @@ public class Chauffage extends Equipement {
   public void setType(TypeChauffage type) {
     this.type = type;
   }
-  
+
   /**
    * Renvoie une consommation de CO2 en g/kWh.
+   * 
    * @param t le type de chauffage dont on veut la consommation de CO2 en g/kWh
    * @return la consommation de CO2 en g/kWh
    */
   public static int getConsoChauffagekwh(TypeChauffage t) {
     return consoChauffagekwh[t.ordinal()];
   }
-  
+
   /**
    * Modifie la consommation en g/kWh d'un certain type de chauffage.
+   * 
    * @param t le type de chauffage dont on veut modifier la consommation de CO2 en g/kWh
    * @param c la nouvelle consommation en g/kWh
    */
-  public static void setConsoChauffagekwh(TypeChauffage t,int c) {
+  public static void setConsoChauffagekwh(TypeChauffage t, int c) {
     consoChauffagekwh[t.ordinal()] = c;
   }
 
@@ -161,7 +166,7 @@ public class Chauffage extends Equipement {
   public boolean isAppartement() {
     return appartement;
   }
-  
+
   /**
    * Modifie le type du bâtiment (appartement ou maison).
    * 
@@ -197,6 +202,7 @@ public class Chauffage extends Equipement {
   public int getSurface() {
     return surface;
   }
+
   /**
    * Modifie la surface du bâtiment chauffé en m2.
    * 
@@ -207,7 +213,9 @@ public class Chauffage extends Equipement {
   }
 
   /**
-   * Renvoie la consommation de CO2 en g pour une surface d'1m2 dont les caractéristiques du bâtiment seront renseignées en paramètres.
+   * Renvoie la consommation de CO2 en g pour une surface d'1m2 dont les caractéristiques du
+   * bâtiment seront renseignées en paramètres.
+   * 
    * @param appart true si on veut la consommation pour un appartement, false si maison
    * @param date true si on veut la consommation pour un bâtiment datant d'après 1975, false sinon
    * @param t le type du chauffage dont on veut la consommation
@@ -218,9 +226,12 @@ public class Chauffage extends Equipement {
   }
 
   /**
-   * Modifie la consommation de CO2 en g pour une surface d'1m2 dont les caractéristiques du bâtiment seront renseignées en paramètres.
+   * Modifie la consommation de CO2 en g pour une surface d'1m2 dont les caractéristiques du
+   * bâtiment seront renseignées en paramètres.
+   * 
    * @param appart true si on veut modifier la consommation pour un appartement, false si maison
-   * @param date true si on veut modifier la consommation pour un bâtiment datant d'après 1975, false sinon
+   * @param date true si on veut modifier la consommation pour un bâtiment datant d'après 1975,
+   *        false sinon
    * @param t le type du chauffage dont on veut modifier la consommation
    * @param c la nouvelle consommation du bâtiment
    */
