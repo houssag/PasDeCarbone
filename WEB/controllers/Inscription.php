@@ -21,12 +21,13 @@ class Inscription extends CI_Controller {
 	}
 
 	public function submit(){
+		extract($_POST);
 		$allUser = $this->db_model->get_all_account();
 
 		$isIn=0;
 
 		foreach($allUser as $aUser){
-			if($aUser->pseudoUtilisateur == $_POST['pseudoUtilisateur'] || $aUser->mailUtilisateur == $_POST['mailUtilisateur']){
+			if($aUser->pseudoUtilisateur == $pseudoUtilisateur || $aUser->mailUtilisateur == $mailUtilisateur){
 				$isIn = 1;
 				break;
 			}
@@ -35,8 +36,9 @@ class Inscription extends CI_Controller {
 		if($isIn == 1 || $_POST['mdpUtilisateurConfirmation'] != $_POST['mdpUtilisateur'] ){
 			   redirect( base_url() . 'index.php/inscription/index', 'refresh');
 		}else{
-			$_POST[mdpUtilisateur] = md5($_POST[mdpUtilisateur]);
-			$this->db_model->insert_aUser($_POST);
+			$salt = "LeSelSurLesPâtesCarbones";
+        	$test = hash('sha256',$salt.$mdpUtilisateur);
+			$this->db_model->insert_aUser($pseudoUtilisateur,$mailUtilisateur,$test,$nomUtilisateur,$prenomUtilisateur,$adresseUtilisateur);
 			redirect( base_url());
 		}
 	}
