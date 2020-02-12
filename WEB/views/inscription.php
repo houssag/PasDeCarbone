@@ -10,7 +10,7 @@
       <div class="control-label">
         <label for="exampleInputEmail1" required="required">Pseudo</label>
       </div>
-      <input type="pseudo" class="form-control" id="pseudoUtilisateur" name="pseudoUtilisateur" required="required" aria-describedby="Pseudo" placeholder="Entrez votre pseudo">
+      <input type="pseudo" class="form-control" id="pseudoUtilisateur" name="pseudoUtilisateur" required="required" aria-describedby="Pseudo" placeholder="Entrez votre pseudo" pattern="[0-9a-zA-Z]+" title="Pas de caractère spéciaux">
 
     </div>
     <div class="form-group required">
@@ -18,7 +18,7 @@
         <label for="exampleInputEmail1">Adresse mail</label>
       </div>
       <input type="email" class="form-control" id="mailUtilisateur" name="mailUtilisateur" aria-describedby="Adresse mail" placeholder="Entrez votre adresse email">
-      <small id="emailHelp" class="form-text text-muted">Nous ne partageront jamais votre adresse mail avec qui que ce soit.</small>
+      <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais votre adresse mail avec qui que ce soit.</small>
     </div>
     <div class="form-group required">
       <div class="control-label">
@@ -34,15 +34,15 @@
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Nom</label>
-      <input type="text" class="form-control" id="nomUtilisateur"  name="nomUtilisateur" aria-describedby="emailHelp" placeholder="Entrez votre Nom">
+      <input type="text" class="form-control" id="nomUtilisateur"  name="nomUtilisateur" aria-describedby="emailHelp" placeholder="Entrez votre Nom" pattern="[0-9a-zA-Z]+" title="Pas de caractère spéciaux">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Prénom</label>
-      <input type="text" class="form-control" id="prenomUtilisateur"  name="prenomUtilisateur" aria-describedby="emailHelp" placeholder="entrez votre Prénom">
+      <input type="text" class="form-control" id="prenomUtilisateur"  name="prenomUtilisateur" aria-describedby="emailHelp" placeholder="entrez votre Prénom" pattern="[0-9a-zA-Z]+" title="Pas de caractère spéciaux">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Adresse domicile</label>
-      <input type="text" class="form-control" id="adresseUtilisateur" name="adresseUtilisateur" aria-describedby="emailHelp" placeholder="entrez votre adresse de domicile">
+      <input type="text" class="form-control" id="adresseUtilisateur" name="adresseUtilisateur" aria-describedby="emailHelp" placeholder="entrez votre adresse de domicile" pattern="[0-9a-zA-Z]+" title="Pas de caractère spéciaux">
     </div>
     <button type="submit" class="btn btn-primary">Valider</button>
   </form>
