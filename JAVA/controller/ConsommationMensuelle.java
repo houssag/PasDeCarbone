@@ -42,7 +42,7 @@ public class ConsommationMensuelle {
   float calculerConsommation() {
     float taux = 0;
     System.out.println("\n");
-    for (int i = 0; i < this.listeUtilisation.size() - 1; i++) {
+    for (int i = 0; i < this.listeUtilisation.size(); i++) {
       taux = taux + ((float) this.listeUtilisation.get(i).getUnEquipement().calculerTaux()
           * (float) this.listeUtilisation.get(i).getQuantite())
           / (float) this.listeUtilisation.get(i).getNbPersonne();

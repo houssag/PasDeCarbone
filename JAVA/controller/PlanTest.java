@@ -141,8 +141,8 @@ public class PlanTest {
       assert (v3 == null);
     }
 
-    Voiture v44 = new Voiture("PÃ©Ã©Ã©Ã©r2h", Voiture.TypeCarburant.Diesel, 12);
-    assertEquals("Le nom de l'Ã©quipement n'est pas bon", "PÃ©Ã©Ã©Ã©r2h", v44.getNom());
+    Voiture v44 = new Voiture("Péééér2h", Voiture.TypeCarburant.Diesel, 12);
+    assertEquals("Le nom de l'Ã©quipement n'est pas bon", "Péééér2h", v44.getNom());
 
 
 

@@ -22,7 +22,7 @@ public class Avion extends Equipement {
    * @return Le taux d'émission CO2 de l'avion
    */
   public float calculerTaux() {
-    float total = 1;
+    float total = this.EMISSIONPARKM;
     if (!economique) {
       total = 2 * total;
     }
