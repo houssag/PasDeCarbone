@@ -2,6 +2,7 @@ package controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
 import java.math.RoundingMode;
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -156,17 +157,6 @@ public class PlanTest {
     } catch (Exception e) {
       assert (v4 == null);
     }
-
-    Avion a1 = null;
-    try {
-      a1 = new Avion("A970", true, -70);
-      fail("l'avion ne devrait pas pouvoir être créee");
-    } catch (Exception e) {
-      assert (a1 == null);
-    }
-    Avion a2 = new Avion("A970", true, 15);
-    assertEquals("La distance n'est pas bonne", 15 + "", a2.getDistance() + "");
-
   }
 
 
@@ -187,17 +177,16 @@ public class PlanTest {
   /** Création avion. **/
   @Test
   public void creerAvion() {
-    Avion a1 = new Avion("avion", true, 360);
+    Avion a1 = new Avion("avion", true);
 
     assertEquals("Erreur nom ne correspond pas", "avion", a1.getNom());
     assertEquals("Erreur le type ne correspond pas", true, a1.isEconomique());
-    assertEquals("Erreur la distance ne correspond pas", 360, a1.getDistance());
   }
 
   @Test
   public void calculerTauxAvion() {
-    Avion a1 = new Avion("avion", true, 360);
-    assertEquals("Erreur le taux ne correspond pas", 61920.0 + "", a1.calculerTaux() + "");
+    Avion a1 = new Avion("avion", true);
+    assertEquals("Erreur le taux ne correspond pas", 172.0 + "", a1.calculerTaux() + "");
   }
 
   @Test
@@ -208,7 +197,7 @@ public class PlanTest {
 
   @Test
   public void definitEmissionAvion() {
-    Avion a1 = new Avion("avion", true, 360);
+    Avion a1 = new Avion("avion", true);
     a1.setEmissionParKm(173.00f);
     assertEquals("Erreur l'emission ne correspond pas", 173.0 + "", Avion.getEmissionParKm() + "");
     a1.setEmissionParKm(172.0f);
@@ -230,7 +219,7 @@ public class PlanTest {
   public void emissionCarburantVoiture() {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     assertEquals("Erreur l'émission ne correspond pas", 2640,
-        Voiture.getEmissionCarburant(v1.getCarburant()));
+        v1.getEmissionCarburant());
   }
 
   @Test
@@ -244,10 +233,10 @@ public class PlanTest {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     Voiture.setEmissionCarburant(v1.getCarburant(), 2540);
     assertEquals("Erreur l'émission ne correspond pas", 2540,
-        Voiture.getEmissionCarburant(v1.getCarburant()));
+        v1.getEmissionCarburant());
     Voiture.setEmissionCarburant(v1.getCarburant(), 2640);
     assertEquals("Erreur l'émission ne correspond pas", 2640,
-        Voiture.getEmissionCarburant(v1.getCarburant()));
+        v1.getEmissionCarburant());
   }
 
 
@@ -404,12 +393,12 @@ public class PlanTest {
     pr1.ajouterEquipement(v1);
     ConsommationMensuelle cm1 = new ConsommationMensuelle(u1, new Date(System.currentTimeMillis()));
     cm1.ajouterUneUtilisation(u1);
-    assertEquals("L'équipement ne correspond pas", Math.toIntExact(2640 * 12 * 360 / 1) + "",
-        Math.toIntExact((long) cm1.calculerConsommation()) + "");
+    assertEquals("L'équipement ne correspond pas", 2.28096E7 + "",
+        cm1.calculerConsommation() + "");
     Voiture v2 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     pr1.ajouterEquipement(v2);
     cm1.ajouterUneUtilisation(u1);
-    assertEquals("L'équipement ne correspond pas", Math.toIntExact(2640 * 12 * 360 * 2 / 1) + "",
+    assertEquals("L'équipement ne correspond pas", Math.toIntExact(34214400) + "",
         Math.toIntExact((long) cm1.calculerConsommation()) + "");
   }
 
@@ -484,12 +473,12 @@ public class PlanTest {
     l1.ajouterUtilisateur(p2);
 
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
-    Avion a1 = new Avion("avion", true, 360);
+    Avion a1 = new Avion("avion", true);
     Train t1 = new Train("tchoutchou", Train.TypeTrain.OUIGO);
     Chauffage ch1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois, 15);
 
     Utilisation u1 = new Utilisation(1200, v1);
-    Utilisation u2 = new Utilisation(2, a1);
+    Utilisation u2 = new Utilisation(360, a1);
     Utilisation u3 = new Utilisation(12, t1);
     Utilisation u4 = new Utilisation(1, ch1);
 
@@ -518,19 +507,19 @@ public class PlanTest {
     df.setRoundingMode(RoundingMode.DOWN);
 
     assertEquals("La consommationMensuelle ne correspond pas",
-        (((2640 * 12 * 1200 / 1) + (1.9 * 12 / 1)) + "").substring(0, 5),
-        (cm1.calculerConsommation() + "").substring(0, 5));
+        (3.8016024E7 + ""),
+        (cm1.calculerConsommation() + ""));
     
 
     assertEquals("La consommationMensuelle ne correspond pas",
-        (((360 * 172 * 12 * 2 / 1) + (15 * 13 * 1 / 1)) + "").substring(0, 4),
-        (cm2.calculerConsommation() + "").substring(0, 4));
+        ((62115.0) + ""),
+        (cm2.calculerConsommation() + ""));
     assertEquals("La consommationMensuelle ne correspond pas",
-        (((2640 * 12 * 1200 / 1) + (360 * 172 * 12 * 2 / 1)) + "").substring(0, 8),
-        (cm3.calculerConsommation() + "").substring(0, 8));
+        (3.807792E7 + ""),
+        (cm3.calculerConsommation() + ""));
     assertEquals("La consommationMensuelle ne correspond pas",
-        (((360 * 172 * 12 * 2 / 1) + (2640 * 12 * 1200 / 1)) + "").substring(0, 8),
-        (cm4.calculerConsommation() + "").substring(0, 8));
+        (3.807792E7 + ""),
+        (cm4.calculerConsommation() + ""));
 
   }
 

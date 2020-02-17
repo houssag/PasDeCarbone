@@ -10,7 +10,6 @@ public abstract class Equipement {
    * 
    * @param n le nom de l'équipement
    */
-  @SuppressWarnings("null")
   Equipement(String n) {
     if (n == null || !estValide(n) || n.length() <= 0) {
       throw new IllegalArgumentException("Le nom est trop cours ou vide");

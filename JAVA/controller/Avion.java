@@ -4,23 +4,16 @@ package controller;
 public class Avion extends Equipement {
   static float EMISSIONPARKM = 172;
   private boolean economique;
-  private int distance;
-
+  
   /**
    * Constructeur de l'objet avion.
    * 
    * @param n le nom de l'avion
    * @param eco booléen vrai si le voyage a été effectué en classe économique, faux sinon
-   * @param d distance effectué lors du voyage
    */
-  public Avion(String n, boolean eco, int d) {
+  public Avion(String n, boolean eco) {
     super(n);
     economique = eco;
-    if (d >= 0) {
-      distance = d;
-    } else {
-      throw new IllegalArgumentException("La distance ne peut pas êtr négative");
-    }
   }
 
   /**
@@ -29,8 +22,7 @@ public class Avion extends Equipement {
    * @return Le taux d'émission CO2 de l'avion
    */
   public float calculerTaux() {
-    float total;
-    total = distance * EMISSIONPARKM;
+    float total = 1;
     if (!economique) {
       total = 2 * total;
     }
@@ -73,24 +65,6 @@ public class Avion extends Equipement {
    */
   public void setEconomique(boolean eco) {
     this.economique = eco;
-  }
-
-  /**
-   * Renvoie la distance parcourue par l'avion en km.
-   * 
-   * @return la distance parcourue par l'avion en km
-   */
-  public int getDistance() {
-    return distance;
-  }
-
-  /**
-   * Modifie la distance parcourue par l'avion en km.
-   * 
-   * @param distance la nouvelle distance parcourue par l'avion en km
-   */
-  public void setDistance(int distance) {
-    this.distance = distance;
   }
 
 }

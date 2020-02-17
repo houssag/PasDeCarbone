@@ -1,3 +1,6 @@
+package controller;
+
+
 public class Analyste extends Utilisateur {
 
   private String entreprise;

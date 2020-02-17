@@ -47,11 +47,10 @@ public class Voiture extends Equipement {
   /**
    * Renvoie la valeur en g de CO2 émis par un litre de type de carburant donné.
    * 
-   * @param t le type de carburant dont on veut l'émission en CO2
    * @return La valeur en g de CO2 émis par un litre du type de carburant donné
    */
-  public static int getEmissionCarburant(TypeCarburant t) {
-    return consoVoiture[t.ordinal()];
+  public int getEmissionCarburant() {
+    return consoVoiture[this.carburant.ordinal()];
   }
 
   /**
