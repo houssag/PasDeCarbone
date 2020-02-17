@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import org.junit.Test;
 
 
-public class Main {
+public class Test {
   /** Classe de test. **/
 
   /** Création de particulier. **/
