@@ -99,5 +99,14 @@ public class Utilisation {
     this.quantite = quantite;
   }
 
+  /**
+   * Fonction permettant de calculer le taux émis.
+   * 
+   * @return renvoile la valeur calculé
+   */
+  public float calculerTaux() {
+    return this.quantite * this.unEquipement.calculerTaux();
+  }
+
 
 }

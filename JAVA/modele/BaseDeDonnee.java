@@ -1,8 +1,11 @@
 package modele;
 
 import controller.Avion;
+import controller.Chauffage;
 import controller.Equipement;
 import controller.Particulier;
+import controller.Train;
+import controller.Voiture;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -72,27 +75,28 @@ public class BaseDeDonnee {
     ArrayList<Equipement> result = new ArrayList<Equipement>();
 
     Statement statement = laBaseDeDonnee.createStatement();
-    ResultSet resultat = statement.executeQuery(
-        "SELECT *  FROM Equipement INNER JOIN CAT" + "EGORIE ON Equipement.Categorie_idCategorie ="
-            + " CATEGORIE.idCategorie INNER JOIN TAUX ON Equipeme" + "nt.taux_idTaux = TAUX.idT"
-            + "aux INNERJOIN EQUIPEMENT.VALEUR_idTaux = idTaux;");
+    ResultSet resultat =
+        statement.executeQuery("SELECT * FROM PROFIL INNER JOIN EQUIPEMENT ON EQUIPEMENT.equId = "
+            + "PROFIL.equ_equId INNER JOIN TAUX ON EQUIPEMENT.tau_tauId = TAUX.tauId");
 
     while (resultat.next()) {
-      int idEquipement = resultat.getInt("idEquipement");
-      String nomEquipement = resultat.getString("nomEquipement");
-      String typeEquipement = resultat.getString("typeEquipement");
-      float tauxEquipement = resultat.getFloat("valeurTaux");
-      String categorieEquipement = resultat.getString("nomEquipement");
-      float valeurDecimal = resultat.getFloat("valeurAutre");
+      String nomEquipement = resultat.getString("PROFIL.equNom");
+      String typeEquipement = resultat.getString("EQUIPEMENT.equNom");
+      String typeTaux = resultat.getString("tauNom");
+      float autreVal = resultat.getFloat("proVal");
 
-      if (categorieEquipement == "Avion") {
-        result.add(new Avion(nomEquipement, valeurDecimal == 1));
-      } else if (categorieEquipement == "Voiture") {
 
-      } else if (categorieEquipement == "Train") {
 
-      } else if (categorieEquipement == "Chauffage") {
-
+      if (typeEquipement == "Avion Eco") {
+        result.add(new Avion(nomEquipement, true));
+      } else if (typeEquipement == "Avion pas éco") {
+        result.add(new Avion(nomEquipement, false));
+      } else if (typeEquipement == "Voiture") {
+        result.add(new Voiture(nomEquipement, Voiture.TypeCarburant.valueOf(typeTaux), autreVal));
+      } else if (typeEquipement == "Train") {
+        result.add(new Train(nomEquipement, Train.TypeTrain.valueOf(typeTaux)));
+      } else if (typeEquipement == "Chauffage") {
+        // result.add(new Chauffage(nomEquipement, Chauffage.TypeChauffage.valueOf(typeTaux),))
       }
     }
 

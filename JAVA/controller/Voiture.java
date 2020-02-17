@@ -20,7 +20,7 @@ public class Voiture extends Equipement {
    * @param c le type de carburant utilisé
    * @param lpk la consommation en litres par kilomètre
    */
-  Voiture(String n, TypeCarburant c, float lpk) {
+  public Voiture(String n, TypeCarburant c, float lpk) {
     super(n);
     carburant = c;
 

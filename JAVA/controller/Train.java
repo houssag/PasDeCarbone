@@ -23,7 +23,7 @@ public class Train extends Equipement {
    * @param tt Type du train
    */
 
-  Train(String n, TypeTrain tt) {
+  public Train(String n, TypeTrain tt) {
     super(n);
     if (tt != null) {
       type = tt;

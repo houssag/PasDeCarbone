@@ -244,9 +244,9 @@ public class PlanTest {
 
   @Test
   public void creationChauffage() {
-    Chauffage c1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois, 15);
+    Chauffage c1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois);
     assertEquals("La liste ne correspond pas", "chaud", c1.getNom());
-    Chauffage c2 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois, true, false, 15);
+    Chauffage c2 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois);
     assertEquals("La liste ne correspond pas", "chaud", c2.getNom());
 
 
@@ -254,12 +254,14 @@ public class PlanTest {
 
   @Test
   public void calculerTauxChauffage() {
-    Chauffage c1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois, 15);
-    assertEquals("La liste ne correspond pas", 15 * 13.0 + "", c1.calculerTaux() + "");
+    Chauffage c1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois);
+    Utilisation u1 = new Utilisation(15,c1);
+    assertEquals("La liste ne correspond pas", 15 * 13.0 + "", u1.calculerTaux() + "");
 
 
-    Chauffage c2 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois, true, false, 15);
-    assertEquals("La liste ne correspond pas", 15 * 198.0 + "", c2.calculerTaux() + "");
+    Chauffage c2 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois);
+    Utilisation u2 = new Utilisation(15,c2);
+    assertEquals("La liste ne correspond pas", 15 * 198.0 + "", u2.calculerTaux() + "");
 
 
   }
@@ -475,7 +477,7 @@ public class PlanTest {
     Voiture v1 = new Voiture("Porsche", Voiture.TypeCarburant.Diesel, 12);
     Avion a1 = new Avion("avion", true);
     Train t1 = new Train("tchoutchou", Train.TypeTrain.OUIGO);
-    Chauffage ch1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois, 15);
+    Chauffage ch1 = new Chauffage("chaud", Chauffage.TypeChauffage.Bois);
 
     Utilisation u1 = new Utilisation(1200, v1);
     Utilisation u2 = new Utilisation(360, a1);
