@@ -28,7 +28,7 @@ public abstract class Utilisateur {
 			this.mdp = m;
 			this.mail = ma;
 
-			if (!estInvalide(pre) && !estInvalide(n) && !estInvalide(ad) && !estInvalide(p)) {
+			if (!estInvalide(pre) && !estInvalide(n)) {
 
 				if (pre.isEmpty() != true) {
 					// On initialise le prénom si il n'est pas vide et si il ne contient pas de
