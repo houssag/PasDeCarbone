@@ -45,6 +45,12 @@ public abstract class Equipement {
     }
   }
 
+  /**
+   * Verifie si le paramètre est valide.
+   * 
+   * @param s correspond à la variable à verifier
+   * @return
+   */
   public boolean estValide(String s) {
     s = Normalizer.normalize(s, Normalizer.Form.NFD);
     s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");

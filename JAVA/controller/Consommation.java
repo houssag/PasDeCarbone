@@ -8,6 +8,11 @@ public class Consommation {
   private ArrayList<ConsommationMensuelle> listeConsommation;
   public Profil profil;
 
+  /**
+   * Constructeur permettant de créer une consommation.
+   * 
+   * @param p correspond au profil à associer la consommation
+   */
   public Consommation(Profil p) {
     if (p == null) {
       throw new IllegalArgumentException("le profil ne peut pas être null");

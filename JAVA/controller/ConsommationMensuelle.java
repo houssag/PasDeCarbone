@@ -43,8 +43,9 @@ public class ConsommationMensuelle {
     float taux = 0;
     System.out.println("\n");
     for (int i = 0; i < this.listeUtilisation.size() - 1; i++) {
-     System.out.print((float )this.listeUtilisation.get(i).getUnEquipement().calculerTaux() +" * " + (float) this.listeUtilisation.get(i).getQuantite() + " / " + (float) this.listeUtilisation.get(i).getNbPersonne()  + " + ");
-      taux = taux +   ((float) this.listeUtilisation.get(i).getUnEquipement().calculerTaux()    * (float) this.listeUtilisation.get(i).getQuantite())        / (float) this.listeUtilisation.get(i).getNbPersonne();
+      taux = taux + ((float) this.listeUtilisation.get(i).getUnEquipement().calculerTaux()
+          * (float) this.listeUtilisation.get(i).getQuantite())
+          / (float) this.listeUtilisation.get(i).getNbPersonne();
     }
     return taux;
   }

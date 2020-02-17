@@ -1,5 +1,8 @@
 package modele;
 
+import controller.Avion;
+import controller.Equipement;
+import controller.Particulier;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import controller.*;
 
 public class BaseDeDonnee {
 
@@ -34,7 +36,8 @@ public class BaseDeDonnee {
 
 
   /**
-   * . Fonction permettant de récupéré tout les utilisateurs de la base de donnée
+   * Fonction permettant de récupéré tout les utilisateurs de la base de donnée.
+   * 
    * 
    * @return Renvoie la liste des utilisateurs trouvés
    * @throws SQLException Erreur si la base de donnée n'a pas été trouvé
@@ -60,6 +63,11 @@ public class BaseDeDonnee {
     return result;
   }
 
+  /**
+   * Fonction permettant de recuperer tout les équipements de la base de donnée.
+   * 
+   * @return
+   */
   public ArrayList<Equipement> get_Equipement() throws SQLException {
     ArrayList<Equipement> result = new ArrayList<Equipement>();
 
@@ -78,7 +86,7 @@ public class BaseDeDonnee {
       float valeurDecimal = resultat.getFloat("valeurAutre");
 
       if (categorieEquipement == "Avion") {
-        result.add(new Avion(nomEquipement, valeurDecimal == 1, (int) tauxEquipement));
+        result.add(new Avion(nomEquipement, valeurDecimal == 1));
       } else if (categorieEquipement == "Voiture") {
 
       } else if (categorieEquipement == "Train") {
@@ -92,13 +100,12 @@ public class BaseDeDonnee {
   }
 
   /**
-   * Fonction permettant de se connecter
+   * Fonction permettant de se connecter.
+   *
    * 
-   * @param unMotDePasse
-   * @param unMail
+   * @param unMotDePasse le mot de passe entré par l'utilisateur
+   * @param unMail le mail entré par l'utilisateur
    * @return
-   * @throws SQLException
-   * @throws NoSuchAlgorithmException
    */
   public boolean se_connecter(String unMotDePasse, String unMail)
       throws SQLException, NoSuchAlgorithmException {
