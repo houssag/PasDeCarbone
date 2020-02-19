@@ -16,7 +16,7 @@ class Inscription extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('template/header');
-		$this->load->view('inscription');
+		$this->load->view('vue_inscription');
 		$this->load->view('template/footer');
 	}
 
@@ -27,7 +27,7 @@ class Inscription extends CI_Controller {
 		$isIn=0;
 
 		foreach($allUser as $aUser){
-			if($aUser->pseudoUtilisateur == $pseudoUtilisateur || $aUser->mailUtilisateur == $mailUtilisateur){
+			if($aUser->utiPseudo == $pseudoUtilisateur || $aUser->utiMail == $mailUtilisateur){
 				$isIn = 1;
 				break;
 			}
@@ -38,7 +38,7 @@ class Inscription extends CI_Controller {
 		}else{
 			$salt = "LeSelSurLesPâtesCarbones";
         	$test = hash('sha256',$salt.$mdpUtilisateur);
-			$this->db_model->insert_aUser($pseudoUtilisateur,$mailUtilisateur,$test,$nomUtilisateur,$prenomUtilisateur,$adresseUtilisateur);
+			$this->db_model->insert_aUser($pseudoUtilisateur,$mailUtilisateur,$test,$nomUtilisateur,$prenomUtilisateur,$adresseUtilisateur,$adressePostalUtilisateur,$adressePaysUtilisateur);
 			redirect( base_url());
 		}
 	}

@@ -16,7 +16,7 @@ class Connexion extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('template/header');
-		$this->load->view('connexion');
+		$this->load->view('vue_connexion');
 		$this->load->view('template/footer');
 	}
 
@@ -31,7 +31,7 @@ class Connexion extends CI_Controller {
 		if($isConnected){
 			$pseudo = $this->db_model->get_pseudo($adresseMail);
 			$_SESSION["mail"] = $adresseMail;
-			$_SESSION["pseudo"] = $pseudo->pseudoUtilisateur;
+			$_SESSION["pseudo"] = $pseudo->utiPseudo;
 
 ;
 			redirect( base_url() . 'index.php/profil/index', 'refresh');
