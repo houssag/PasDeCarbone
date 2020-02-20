@@ -78,8 +78,42 @@ class Db_model extends CI_Model {
 		}
 
 		public function getAll_equipement(){
-			$sql = "Select EQUIPEMENT.equNom, CATEGORIE.catNom, TAUX.tauNom, TAUX.tauValeur from EQUIPEMENT inner join CATEGORIE on EQUIPEMENT.cat_catId = CATEGORIE.catId inner join TAUX on TAUX.tauId = EQUIPEMENT.tau_tauId";
+			$sql = "Select equId, equNom, tau_tauId, cat_catId, TAUX.tauValeur from EQUIPEMENT inner join TAUX on EQUIPEMENT.tau_tauId = TAUX.tauId";
            	$result = $this->db->query($sql);
            	return $result->result_array();
+		}
+
+		public function getAll_taux(){
+			$sql = "Select distinct tauId, tauValeur, tauNom from TAUX inner join EQUIPEMENT on TAUX.tauId = EQUIPEMENT.tau_tauId";
+           	$result = $this->db->query($sql);
+           	return $result->result_array();
+		}
+
+		public function getAll_categorie(){
+			$sql = "Select distinct catId, catNom from CATEGORIE inner join EQUIPEMENT on CATEGORIE.catId = EQUIPEMENT.cat_catId";
+           	$result = $this->db->query($sql);
+           	return $result->result_array();
+		}
+
+		public function get_idEquipement_cat($id){
+			$sql = "Select equId, equNom, tau_tauId, cat_catId, TAUX.tauValeur from EQUIPEMENT inner join TAUX on EQUIPEMENT.tau_tauId = TAUX.tauId where cat_catId = ?";
+           	$result = $this->db->query($sql,$id);
+           	return $result->result_array();
+		}
+
+		public function get_idEquipement_taux($id){
+			$sql = "Select equId, equNom, tau_tauId, cat_catId, TAUX.tauValeur from EQUIPEMENT inner join TAUX on EQUIPEMENT.tau_tauId = TAUX.tauId where tau_tauId = ?";
+           	$result = $this->db->query($sql,$id);
+           	return $result->result_array();
+		}
+
+		public function set_equipementProfil($id,$nom,$uti){
+			$sql = "INSERT into PROFIL (equ_equId, equNom, uti_utiId, proSupprime, proConsoLparKM) value(?,?,?,1,1)";
+			$this->db->query($sql,array($id,$nom,$uti));
+		}
+
+		public function set_equipementProfil($id,$uti){
+			$sql = "UPDATE PROFIL set proSupprime = 1 where uti_utiId = ? and equ_equId = ?";
+			$this->db->query($sql,array($uti,$id));
 		}
 }
