@@ -1,4 +1,4 @@
-    <div class="features-clean">
+ <div class="features-clean">
         <div class="container">
             <div class="intro">
                 <h2 class="text-center">Mes commissions</h2>
